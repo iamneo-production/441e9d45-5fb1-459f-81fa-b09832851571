@@ -3,16 +3,17 @@ import React, { useState } from 'react';
 const BarcodeScannerIntegration = () => {
   const [scannedBarcode, setScannedBarcode] = useState('');
 
-  const handleBarcodeScan = (event) => {
-    const scannedData = event.target.value;
-    setScannedBarcode(scannedData);
+  const handleBarcodeScan = (e) => {
+    const barcode = e.target.value;
+    setScannedBarcode(barcode);
+    // Process the scanned barcode (e.g., make an API call, update the inventory, etc.)
   };
 
   return (
     <div>
       <h2>Barcode Scanner Integration</h2>
-      <input type="text" value={scannedBarcode} onChange={handleBarcodeScan} placeholder="Scan barcode..." />
-      <p>Scanned Barcode: {scannedBarcode}</p>
+      <input type="text" placeholder="Scan barcode" value={scannedBarcode} onChange={handleBarcodeScan} />
+      {scannedBarcode && <p>Scanned Barcode: {scannedBarcode}</p>}
     </div>
   );
 };

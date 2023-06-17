@@ -5,42 +5,85 @@ import InventoryDashboard from './components/InventoryDashboard';
 import SalesTracker from './components/SalesTracker';
 import LocationManager from './components/LocationManager';
 import BarcodeScannerIntegration from './components/BarcodeScannerIntegration';
-import './App.css';
 
 const App = () => {
   return (
     <Router>
-      <div className="app-container">
-        <nav className="navbar">
-          <ul className="navbar-list">
-            <li className="navbar-item">
-              <Link to="/" className="navbar-link">Product List</Link>
+      <div style={styles.container}>
+        <nav style={styles.nav}>
+          <ul style={styles.navList}>
+            <li style={styles.navItem}>
+              <Link to="/" style={styles.navLink}>Product List</Link>
             </li>
-            <li className="navbar-item">
-              <Link to="/inventory" className="navbar-link">Inventory Dashboard</Link>
+            <li style={styles.navItem}>
+              <Link to="/dashboard" style={styles.navLink}>Inventory Dashboard</Link>
             </li>
-            <li className="navbar-item">
-              <Link to="/sales" className="navbar-link">Sales Tracker</Link>
+            <li style={styles.navItem}>
+              <Link to="/sales" style={styles.navLink}>Sales Tracker</Link>
             </li>
-            <li className="navbar-item">
-              <Link to="/locations" className="navbar-link">Location Manager</Link>
+            <li style={styles.navItem}>
+              <Link to="/locations" style={styles.navLink}>Location Manager</Link>
             </li>
-            <li className="navbar-item">
-              <Link to="/barcode-scanner" className="navbar-link">Barcode Scanner Integration</Link>
+            <li style={styles.navItem}>
+              <Link to="/scanner" style={styles.navLink}>Barcode Scanner Integration</Link>
             </li>
           </ul>
         </nav>
 
         <Routes>
           <Route path="/" element={<ProductList />} />
-          <Route path="/inventory" element={<InventoryDashboard />} />
+          <Route path="/dashboard" element={<InventoryDashboard />} />
           <Route path="/sales" element={<SalesTracker />} />
           <Route path="/locations" element={<LocationManager />} />
-          <Route path="/barcode-scanner" element={<BarcodeScannerIntegration />} />
+          <Route path="/scanner" element={<BarcodeScannerIntegration />} />
         </Routes>
       </div>
     </Router>
   );
 };
+
+const styles = {
+  container: {
+    fontFamily: 'Arial, sans-serif',
+    maxWidth: '800px',
+    margin: '0 auto',
+    padding: '20px',
+  },
+  nav: {
+    marginBottom: '20px',
+    backgroundColor: '#f2f2f2',
+    padding: '10px',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  },
+  navList: {
+    listStyle: 'none',
+    padding: 0,
+    margin: 0,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  navItem: {
+    marginRight: '10px',
+  },
+  navLink: {
+    textDecoration: 'none',
+    color: '#333',
+    fontWeight: 'bold',
+    padding: '5px 10px',
+    borderRadius: '4px',
+    backgroundColor: '#fff',
+    transition: 'background-color 0.3s ease',
+  },
+  navLinkActive: {
+    backgroundColor: '#333',
+    color: '#fff',
+  },
+  content: {
+    backgroundColor: '#fff',
+    padding: '20px',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  },
+};
+
 
 export default App;
