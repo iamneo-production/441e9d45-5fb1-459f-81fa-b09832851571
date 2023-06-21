@@ -41,7 +41,7 @@ const SalesTracker = () => {
     <div>
       <h2>Sales Tracker</h2>
       <h3>Sales</h3>
-      <table>
+      <table className='table border shadow'>
         <thead>
           <tr>
             <th>ID</th>
@@ -64,18 +64,28 @@ const SalesTracker = () => {
         </tbody>
       </table>
       <h3>Revenue: ${revenue}</h3>
-      <h3>Generate Report</h3>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-md-8 offset-md-3 border rounded p-4 mt-2 shadow'>
+      <h3 className='text-center m-4'>Generate Report</h3>
       <form onSubmit={generateReport}>
-        <label>
-          Start Date:
-          <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-        </label>
-        <label>
-          End Date:
-          <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-        </label>
-        <button type="submit">Generate Report</button>
+      <div className='mb-3'>
+        <label htmlFor='Product ID' className='form-label'>
+          Start Date
+          </label>
+          <input type="date" className='form-control' value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+        </div>
+        <div className='mb-3'>
+        <label htmlFor='Product ID' className='form-label'>
+          End Date
+          </label>
+          <input type="date" className='form-control' value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+        </div>
+        <center><button type="submit" className='btn btn-outline-primary'>Generate Report</button></center>
       </form>
+      </div>
+      </div>
+      </div>
     </div>
   );
 };

@@ -6,6 +6,7 @@ import SalesTracker from './components/SalesTracker';
 import LocationManager from './components/LocationManager';
 import BarcodeScannerIntegration from './components/BarcodeScannerIntegration';
 
+
 const App = () => {
   return (
     <Router>
@@ -45,7 +46,7 @@ const App = () => {
 const styles = {
   container: {
     fontFamily: 'Arial, sans-serif',
-    maxWidth: '800px',
+    maxWidth: '1300px',
     margin: '0 auto',
     padding: '20px',
   },
@@ -54,6 +55,7 @@ const styles = {
     backgroundColor: '#f2f2f2',
     padding: '10px',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    
   },
   navList: {
     listStyle: 'none',

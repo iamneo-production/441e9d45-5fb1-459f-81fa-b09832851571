@@ -41,7 +41,7 @@ const LocationManager = () => {
   return (
     <div>
       <h2>Location Manager</h2>
-      <h3>Locations</h3>
+      <h3 >Locations</h3>
       <ul>
         {locations.map((location) => (
           <li key={location.id}>
@@ -50,18 +50,27 @@ const LocationManager = () => {
           </li>
         ))}
       </ul>
-      <h3>Add Location</h3>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-md-8 offset-md-3 border rounded p-4 mt-2 shadow'>
+      <h3 className='text-center m-4'>Add Location</h3>
       <form onSubmit={addLocation}>
-        <label>
-          Location Name:
+      <div className='mb-3'>
+        <label htmlFor='Location Name' className='form-label'>
+          Location Name
+          </label>
           <input
             type="text"
+            className='form-control'
             value={newLocation}
             onChange={(e) => setNewLocation(e.target.value)}
           />
-        </label>
-        <button type="submit">Add Location</button>
+        </div>
+       <center><button type="submit" className='btn btn-outline-primary'>Add Location</button></center> 
       </form>
+      </div>
+      </div>
+      </div>
     </div>
   );
 };

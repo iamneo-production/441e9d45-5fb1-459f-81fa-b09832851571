@@ -12,7 +12,7 @@ const BarcodeScannerIntegration = () => {
   return (
     <div>
       <h2>Barcode Scanner Integration</h2>
-      <input type="text" placeholder="Scan barcode" value={scannedBarcode} onChange={handleBarcodeScan} />
+      <input type="text" placeholder="Scan barcode" className='form-control'value={scannedBarcode} onChange={handleBarcodeScan} />
       {scannedBarcode && <p>Scanned Barcode: {scannedBarcode}</p>}
     </div>
   );

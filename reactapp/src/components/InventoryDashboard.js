@@ -65,7 +65,7 @@ const InventoryDashboard = () => {
       <h2>Inventory Dashboard</h2>
       {lowInventoryAlert && <p>Low Inventory Alert!</p>}
       <h3>Inventory</h3>
-      <table>
+      <table className='table border shadow'>
         <thead>
           <tr>
             <th>ID</th>
@@ -86,7 +86,7 @@ const InventoryDashboard = () => {
         </tbody>
       </table>
       <h3>Shipments</h3>
-      <table>
+      <table className='table border shadow'>
         <thead>
           <tr>
             <th>ID</th>
@@ -108,18 +108,28 @@ const InventoryDashboard = () => {
           ))}
         </tbody>
       </table>
-      <h3>Receive Shipment</h3>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-md-8 offset-md-3 border rounded p-4 mt-2 shadow'>
+      <h3 className='text-center m-4'>Receive Shipment</h3>
       <form onSubmit={handleReceiveShipment}>
-        <label>
+      <div className='mb-3'>
+        <label htmlFor='Product ID' className='form-label'>
           Product ID:
-          <input type="number" value={productId} onChange={(e) => setProductId(e.target.value)} />
-        </label>
-        <label>
+          </label>
+          <input type="number" className='form-control' value={productId} onChange={(e) => setProductId(e.target.value)} />
+          </div>
+          <div className='mb-3'>
+        <label htmlFor='Quantity' className='form-label'>
           Quantity:
-          <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
-        </label>
-        <button type="submit">Receive Shipment</button>
+          </label>
+          <input type="number" className='form-control' value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+          </div>
+        <center><button type="submit" className='btn btn-outline-primary'>Receive Shipment</button></center>
       </form>
+      </div>
+      </div>
+      </div>
     </div>
   );
 };

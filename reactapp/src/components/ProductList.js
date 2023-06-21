@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [name, setName] = useState('');
@@ -63,63 +64,92 @@ const ProductList = () => {
   };
 
   return (
-    <div>
-      <h2>Product List</h2>
-      <form onSubmit={handleAddProduct}>
-        <label>
-          Name:
-          <input
+    <><div className='container'>
+      <div className='row'>
+        <div className='col-md-8 offset-md-3 border rounded p-4 mt-2 shadow'>
+          <h2 className='text-center m-4'>Product List</h2>
+          <form onSubmit={handleAddProduct}>
+            <div className='mb-3'>
+              <label htmlFor='Name' className='form-label'>
+                Name
+              </label>
+              <input
+                type="text"
+                className='form-control'
+                placeholder='Enter product name'
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                required
+                name='name' />
+            </div>
+            <div className='mb-3'>
+              <label htmlFor='Description' className='form-label'>
+                Description
+              </label>
+              <input
+                type="text"
+                className='form-control'
+                placeholder='Enter product description'
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+                name='description' />
+            </div>
+            <div className='mb-3'>
+              <label htmlFor='Price' className='form-label'>
+                Price
+              </label>
+              <input
+                type="number"
+                className='form-control'
+                value={price}
+                onChange={(event) => setPrice(Number(event.target.value))}
+                required
+                name='price' />
+            </div>
+            <div className='mb-3'>
+              <label htmlFor='Quantity' className='form-label'>
+                Quantity
+              </label>
+              <input
+              type="number"
+              className='form-control'
+              value={quantity}
+              onChange={(event) => setQuantity(Number(event.target.value))}
+              required
+              name='quantity' />
+            </div>
+            <div className='mb-3'>
+              <label htmlFor='Location' className='form-label'>
+                Location
+              </label>
+              <input
             type="text"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Description:
-          <input
-            type="text"
-            value={description}
-            onChange={(event) => setDescription(event.target.value)}
-          />
-        </label>
-        <label>
-          Price:
-          <input
-            type="number"
-            value={price}
-            onChange={(event) => setPrice(Number(event.target.value))}
-            required
-          />
-        </label>
-        <label>
-          Quantity:
-          <input
-            type="number"
-            value={quantity}
-            onChange={(event) => setQuantity(Number(event.target.value))}
-            required
-          />
-        </label>
-        <label>
-          Location:
-          <input
-            type="text"
+            className='form-control'
             value={location}
             onChange={(event) => setLocation(event.target.value)}
+            name='location'
           />
-        </label>
-        <label>
-          Barcode:
-          <input
+          </div>
+          <div className='mb-3'>
+              <label htmlFor='Barcode' className='form-label'>
+                Barcode
+              </label>
+              <input
             type="text"
+            className='form-control'
             value={barcode}
             onChange={(event) => setBarcode(event.target.value)}
+            name='barcode'
           />
-        </label>
-        <button type="submit">Add Product</button>
-      </form>
-      <table>
+          </div>
+          <center><button type="submit" className='btn btn-outline-primary'>Add Product</button></center>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div className='container'>
+      <div className='py-4'>
+      <table className='table border shadow'>
         <thead>
           <tr>
             <th>ID</th>
@@ -148,8 +178,8 @@ const ProductList = () => {
             </tr>
           ))}
         </tbody>
-      </table>
-    </div>
+      </table></div>
+      </div></>
   );
 };
 
