@@ -5,6 +5,7 @@ import InventoryDashboard from './components/InventoryDashboard';
 import SalesTracker from './components/SalesTracker';
 import LocationManager from './components/LocationManager';
 import BarcodeScannerIntegration from './components/BarcodeScannerIntegration';
+import Reports from './components/Reports';
 import "./App.css";
 
 
@@ -29,6 +30,9 @@ const App = () => {
             <li style={styles.navItem}>
               <Link to="/scanner" className='hii' style={styles.navLink}>Barcode Scanner Integration</Link>
             </li>
+            <li style={styles.navItem}>
+              <Link to="/reports" className='hii' style={styles.navLink}>Reports</Link>
+            </li>
           </ul>
         </nav>
         </div>
@@ -39,6 +43,7 @@ const App = () => {
           <Route path="/sales" element={<SalesTracker />} />
           <Route path="/locations" element={<LocationManager />} />
           <Route path="/scanner" element={<BarcodeScannerIntegration />} />
+          <Route path="/reports" element={<Reports/>} />
         </Routes>
         </div>
     </Router>
@@ -47,7 +52,7 @@ const App = () => {
 
 const styles = {
   container: {
-    fontFamily: 'product sans',
+    fontFamily: 'Poppins',
     maxWidth: '2000px',
     margin: '0 auto',
     padding: '20px',
