@@ -23,4 +23,8 @@ public class SalesController {
     public Sales createSales(@RequestBody Sales sales) {
         return salesRepository.save(sales);
     }
+    @DeleteMapping
+    public Sales deleteSales(@RequestBody Sales sales) {
+        return salesRepository.deleteSales(sales);
+    }
 }

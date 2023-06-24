@@ -4,14 +4,14 @@ import javax.*;
 import java.util.Date;
 
 @Entity
-@Table(name="Sales_details")
+@Table(name="sales")
 public class Sales {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Column(name = "Product Id")
-    private long p_id;
+    private long productid;
 
     @Column(name = "Quantity")
     private long quantity;
@@ -26,9 +26,9 @@ public class Sales {
 
     }
     
-    public Sales(long id, long p_id, long quantity, double price, Date date) {
+    public Sales(long id, long productid, long quantity, double price, Date date) {
         this.id = id;
-        this.p_id = p_id;
+        this.productid = productid;
         this.quantity = quantity;
         this.price = price;
         this.date = date;
@@ -39,11 +39,11 @@ public class Sales {
     public void setId(long id) {
         this.id = id;
     }
-    public long getP_id() {
-        return p_id;
+    public long getProductid() {
+        return productid;
     }
-    public void setP_id(long p_id) {
-        this.p_id = p_id;
+    public void setProductid(long productid) {
+        this.productid = productid;
     }
     public long getQuantity() {
         return quantity;
