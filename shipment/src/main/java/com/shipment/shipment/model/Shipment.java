@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class Shipment {
 
     @Id
     @GeneratedValue
@@ -55,4 +55,3 @@ public class User {
         this.timestamp = timestamp;
     }
 }
-

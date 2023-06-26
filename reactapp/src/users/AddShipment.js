@@ -21,7 +21,7 @@ export default function AddShipment() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8081/user", user);
+    await axios.post("http://localhost:8081/postshipment", user);
     navigate("/");
   };
 
