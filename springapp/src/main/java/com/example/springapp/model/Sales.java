@@ -1,4 +1,4 @@
-package main.java.com.example.springapp.model;
+package java.com.example.springapp;
 
 import javax.*;
 import java.util.Date;
@@ -19,6 +19,7 @@ public class Sales {
     @Column(name = "Price")
     private double price;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name ="Dates")
     private Date date;
 
