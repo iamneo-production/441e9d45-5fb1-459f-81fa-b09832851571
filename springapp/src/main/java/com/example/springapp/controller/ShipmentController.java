@@ -1,8 +1,8 @@
-package com.shipment.shipment.controller;
+package com.example.springapp.controller;
 
-import com.shipment.shipment.exception.ShipmentNotFoundException;
-import com.shipment.shipment.model.Shipment;
-import com.shipment.shipment.repository.ShipmentRepository;
+import com.example.springapp.exception.ShipmentNotFoundException;
+import com.example.springapp.model.Shipment;
+import com.example.springapp.repository.ShipmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
