@@ -1,4 +1,4 @@
-package com.example.springapp.exception;
+package com.shipment.shipment.exception;
 
 public class ShipmentNotFoundException extends RuntimeException {
     public ShipmentNotFoundException(Long id) {
