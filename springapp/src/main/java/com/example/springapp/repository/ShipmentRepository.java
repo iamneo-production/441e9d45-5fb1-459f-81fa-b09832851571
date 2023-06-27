@@ -1,6 +1,6 @@
-package com.example.springapp.repository;
+package com.shipment.shipment.repository;
 
-import com.example.springapp.model.Shipment;
+import com.shipment.shipment.model.Shipment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ShipmentRepository extends JpaRepository<Shipment, Long> {
