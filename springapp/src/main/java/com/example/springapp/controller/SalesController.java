@@ -6,11 +6,17 @@ import com.example.springapp.repository.SalesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:8080")
 public class SalesController {
+
+    @GetMapping("/hello")
+    public @ResponseBody String getResponse(){
+        return "Hello";
+    }
 
     @Autowired
     private SalesRepository salesRepository;
