@@ -61,32 +61,10 @@ const InventoryDashboard = () => {
   };
 
   return (
-    <div>
-      <h2>Inventory Dashboard</h2>
-      {lowInventoryAlert && <p>Low Inventory Alert!</p>}
-      <h3>Inventory</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Product ID</th>
-            <th>Quantity</th>
-            <th>Location</th>
-          </tr>
-        </thead>
-        <tbody>
-          {inventory.map((item) => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.product_id}</td>
-              <td>{item.quantity}</td>
-              <td>{item.location}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <h3>Shipments</h3>
-      <table>
+    <>
+    <div className='container'>
+    <div className='py-4'>
+      <table className='table border shadow'>
         <thead>
           <tr>
             <th>ID</th>
@@ -108,19 +86,45 @@ const InventoryDashboard = () => {
           ))}
         </tbody>
       </table>
-      <h3>Receive Shipment</h3>
-      <form onSubmit={handleReceiveShipment}>
-        <label>
-          Product ID:
-          <input type="number" value={productId} onChange={(e) => setProductId(e.target.value)} />
-        </label>
-        <label>
-          Quantity:
-          <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
-        </label>
-        <button type="submit">Receive Shipment</button>
-      </form>
+      </div>
+    </div>  
+
+    <div className='container w-50 justify-content-center'>
+      <div className='row'>
+        <div className='container justify-content-center bg-dark col-md-8 border rounded p-4 mt-2 text-white'>
+          <h3 className='text-center m-4'>Receive Shipment</h3>
+          <form onSubmit={handleReceiveShipment}>
+          <div className='mb-3'>
+            <label htmlFor='Product ID' className='form-label'>
+              Product ID:
+              </label>
+              <input type="number" className='form-control' value={productId} onChange={(e) => setProductId(e.target.value)} />
+          </div>
+          <div className='mb-3'>
+            <label htmlFor='Product ID' className='form-label'>
+              Quantity:
+              </label>
+              <input type="number" className='form-control' value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+          </div>    
+          <div className='mb-3'>
+            <label htmlFor='Quantity' className='form-label'>
+              Quantity:
+              </label>
+              <input type="number" className='form-control' value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+          </div>
+          <div className='mb-3'>
+            <label htmlFor='Quantity' className='form-label'>
+              Quantity:
+              </label>
+              <input type="number" className='form-control' value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+          </div>
+
+            <center><button type="submit" className='btn btn-primary'>Receive Shipment</button></center>
+          </form>
+          </div>
+          </div>
     </div>
+        </>
   );
 };
 

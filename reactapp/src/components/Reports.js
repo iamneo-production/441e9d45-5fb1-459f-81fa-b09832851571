@@ -39,7 +39,7 @@ const Reports = () => {
     <div>
       <h2>Reports</h2>
       <h3>Inventory Levels</h3>
-      <table>
+      <table className='table border shadow'>
         <thead>
           <tr>
             <th>ID</th>
@@ -62,7 +62,7 @@ const Reports = () => {
         </tbody>
       </table>
       <h3>Sales Data</h3>
-      <table>
+      <table className='table border shadow'>
         <thead>
           <tr>
             <th>ID</th>
