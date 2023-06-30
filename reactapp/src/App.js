@@ -1,8 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import  Barcodescannerintegeration from './component/Barcodescannerintegeration';
 import './App.css'; 
-
+import Home from './components/Home';
 const App = () => {
   return (
     
