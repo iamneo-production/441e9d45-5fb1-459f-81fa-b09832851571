@@ -92,34 +92,34 @@ const InventoryDashboard = () => {
     <div className='container w-50 justify-content-center'>
       <div className='row'>
         <div className='container justify-content-center bg-dark col-md-8 border rounded p-4 mt-2 text-white'>
-          <h3 className='text-center m-4'>Receive Shipment</h3>
+          <h3 className='text-center m-4'>Receive Inventory</h3>
           <form onSubmit={handleReceiveShipment}>
           <div className='mb-3'>
             <label htmlFor='Product ID' className='form-label'>
-              Product ID:
+              Product ID
               </label>
               <input type="number" className='form-control' value={productId} onChange={(e) => setProductId(e.target.value)} />
           </div>
           <div className='mb-3'>
-            <label htmlFor='Product ID' className='form-label'>
-              Quantity:
+            <label htmlFor='Quantity' className='form-label'>
+              Quantity
               </label>
               <input type="number" className='form-control' value={quantity} onChange={(e) => setQuantity(e.target.value)} />
           </div>    
           <div className='mb-3'>
-            <label htmlFor='Quantity' className='form-label'>
-              Quantity:
+            <label htmlFor='Location' className='form-label'>
+              Location
               </label>
               <input type="number" className='form-control' value={quantity} onChange={(e) => setQuantity(e.target.value)} />
           </div>
           <div className='mb-3'>
-            <label htmlFor='Quantity' className='form-label'>
-              Quantity:
+            <label htmlFor='Date' className='form-label'>
+              Date
               </label>
               <input type="number" className='form-control' value={quantity} onChange={(e) => setQuantity(e.target.value)} />
           </div>
 
-            <center><button type="submit" className='btn btn-primary'>Receive Shipment</button></center>
+            <center><button type="submit" className='btn btn-primary'>Receive Inventory</button></center>
           </form>
           </div>
           </div>

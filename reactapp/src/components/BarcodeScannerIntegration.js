@@ -22,12 +22,13 @@ const BarcodeScannerIntegration = () => {
             value={scannedBarcode}
             onChange={handleBarcodeScan}
           />
+          
           <div className="input-group-append">
             <button className="btn btn-primary" type="button">Scan</button>
           </div>
         </div>
         {scannedBarcode && <p className="mt-2">Scanned Barcode: {scannedBarcode}</p>}
-      </div>
+        </div>
     </div>
   );
 };
