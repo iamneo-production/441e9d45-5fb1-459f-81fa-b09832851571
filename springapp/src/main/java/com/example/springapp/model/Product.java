@@ -16,13 +16,13 @@ public class Product {
 	private String name;
 	private String description;
 	private double price;
-	private int quantity;
+	private Long quantity;
 	private String location;
 	private String barcode;
 	
 	
 	
-	public Product(Long id, String name, String description, double price, int quantity, String location,
+	public Product(Long id, String name, String description, double price, Long quantity, String location,
 			String barcode) {
 		super();
 		this.id = id;
@@ -60,10 +60,10 @@ public class Product {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public int getQuantity() {
+	public Long getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(int quantity) {
+	public void setQuantity(Long quantity) {
 		this.quantity = quantity;
 	}
 	public String getLocation() {

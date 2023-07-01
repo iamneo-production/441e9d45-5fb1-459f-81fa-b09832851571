@@ -12,31 +12,45 @@ import com.example.springapp.repository.ProductRepository;
 @Service
 public class ProductService {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
+
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     public Product createProduct(Product product) {
         return productRepository.save(product);
+    }
+
+    public Product getProductById(Long id) {
+        return productRepository.findProductById(id);
     }
 
     public List<Product> getAllProduct() {
         return productRepository.findAll();
     }
 
-    public Product getProductById(Long id) {
-        Optional<Product> optionalProduct = productRepository.findById(id);
-        return optionalProduct.orElse(null);
+    public Product updateProduct(Long id, Product updatedProduct) {
+        Product existingProduct = getProductById(id);
+        if (existingProduct != null) {
+            existingProduct.setName(updatedProduct.getName());
+            existingProduct.setDescription(updatedProduct.getDescription());
+            existingProduct.setPrice(updatedProduct.getPrice());
+            existingProduct.setQuantity(updatedProduct.getQuantity());
+            existingProduct.setLocation(updatedProduct.getLocation());
+            existingProduct.setBarcode(existingProduct.getBarcode());
+            return productRepository.save(existingProduct);
+        } else {
+            return null;
+        }
     }
 
-    public void updateProduct(Product product) {
-        productRepository.save(product);
-    }
-
-    public void deleteProductById(Long id) {
-        productRepository.deleteById(id);
-    }
-
-    public void deleteAllProduct() {
-        productRepository.deleteAll();
+    public boolean deleteProduct(Long id) {
+        try {
+            productRepository.deleteProductById(id);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
     }
 }
