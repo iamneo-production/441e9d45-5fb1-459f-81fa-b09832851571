@@ -1,9 +1,14 @@
 import React from 'react'
 
+
 function HomeText() {
   return (
     <div style={styles.hometext}>
-        Welcome To Inventory Management System</div>
+        <h1>Welcome To Inventory Management System</h1>
+        <button type="submit" className='btn btn-primary'>Login</button>
+        <button type="submit" className='btn btn-primary'>Signup</button>
+        
+        </div>
   )
 }
 

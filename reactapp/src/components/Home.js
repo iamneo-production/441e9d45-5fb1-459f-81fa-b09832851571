@@ -13,11 +13,16 @@ import ShipmentHome from './ShipmentHome';
 import AddShipment from './AddShipment';
 import EditShipment from './EditShipment';
 import ViewShipment from './ViewShipment';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Signup from './Signup';
+import Login from './Login';
 
 function Home() {
   return (
 
     <Router>
+      <ToastContainer/>
     <div>
     <nav className="navbar navbar-expand-lg  navbar navbar-expand-sm bg-dark navbar-dark">
         <div className="container-fluid"> 
@@ -30,6 +35,7 @@ function Home() {
         <Link to="/locations" className='navbar-brand'>Location</Link>
         <Link to="/scanner" className='navbar-brand'>Barcode</Link>
         <Link className="navbar-brand" to="/reports">Reports</Link>
+        
         
         </div>
       </nav>
@@ -50,6 +56,8 @@ function Home() {
           <Route path="/addshipment" element={<AddShipment />} />
           <Route path="/editshipment/:id" element={<EditShipment />} />
           <Route path="/viewshipment/:id" element={<ViewShipment />} />
+          <Route path="/Signup" element={<Signup />} />
+          <Route path="/Login" element={<Login />} />
     </Routes>
     </div>
     </Router>
