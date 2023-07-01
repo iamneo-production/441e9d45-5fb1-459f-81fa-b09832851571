@@ -36,8 +36,9 @@ const Reports = () => {
   };
 
   return (
-    <div>
-      <h2>Reports</h2>
+    <>
+    <div className='container'>
+    <div className='py-4'>
       <h3>Inventory Levels</h3>
       <table className='table border shadow'>
         <thead>
@@ -61,6 +62,10 @@ const Reports = () => {
           ))}
         </tbody>
       </table>
+      </div>
+    </div>
+    <div className='container'>
+    <div className='py-4'>
       <h3>Sales Data</h3>
       <table className='table border shadow'>
         <thead>
@@ -86,7 +91,9 @@ const Reports = () => {
       </table>
       <h3>Revenue</h3>
       <p>Total Revenue: ${revenue.toFixed(2)}</p>
+      </div>
     </div>
+  </>
   );
 };
 

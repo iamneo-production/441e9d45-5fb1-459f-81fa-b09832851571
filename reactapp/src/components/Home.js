@@ -9,6 +9,10 @@ import Reports from './Reports';
 import "../App.css"
 import PurchaseOrder from './PurchaseOrder';
 import HomeText from './HomeText';
+import ShipmentHome from './ShipmentHome';
+import AddShipment from './AddShipment';
+import EditShipment from './EditShipment';
+import ViewShipment from './ViewShipment';
 
 function Home() {
   return (
@@ -20,18 +24,20 @@ function Home() {
         <Link to="/" className='navbar-brand' style={styles.text}>IMS</Link>   
         <Link to="/product" className='navbar-brand'>Product List</Link>
         <Link to="/dashboard" className='navbar-brand'>Inventory Dashboard</Link>
+        <Link className="navbar-brand" to="/shipment">Shipment</Link> 
         <Link to="/sales" className='navbar-brand'>Sales Tracker</Link>
         <Link to="/purchase" className='navbar-brand'>Purchase Order</Link>   
         <Link to="/locations" className='navbar-brand'>Location</Link>
         <Link to="/scanner" className='navbar-brand'>Barcode</Link>
         <Link className="navbar-brand" to="/reports">Reports</Link>
-        <Link className="navbar-brand" to="/shipment">Shipment</Link> 
+        
         </div>
       </nav>
     </div>
 
     <div>
     <Routes>
+          
            <Route path="/" element={<HomeText />} />
            <Route path="/product" element={<ProductList />} />
            <Route path="/dashboard" element={<InventoryDashboard />} />
@@ -40,6 +46,10 @@ function Home() {
            <Route path="/scanner" element={<BarcodeScannerIntegration />} />
            <Route path="/reports" element={<Reports />} />
            <Route path="/purchase" element={<PurchaseOrder />} />
+           <Route path="/shipment" element={<ShipmentHome />} />
+          <Route path="/addshipment" element={<AddShipment />} />
+          <Route path="/editshipment/:id" element={<EditShipment />} />
+          <Route path="/viewshipment/:id" element={<ViewShipment />} />
     </Routes>
     </div>
     </Router>

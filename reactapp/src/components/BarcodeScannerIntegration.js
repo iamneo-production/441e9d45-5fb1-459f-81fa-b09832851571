@@ -1,35 +1,107 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button, Modal } from 'react-bootstrap';
 
-const BarcodeScannerIntegration = () => {
-  const [scannedBarcode, setScannedBarcode] = useState('');
+const  BarcodeScannerIntegeration = () => {
+  const [productId, setProductId] = useState('');
+  const [productDetails, setProductDetails] = useState(null);
+  const [errorModalOpen, setErrorModalOpen] = useState(false);
+  const [detailsModalOpen, setDetailsModalOpen] = useState(false);
 
-  const handleBarcodeScan = (e) => {
-    const barcode = e.target.value;
-    setScannedBarcode(barcode);
-    // Process the scanned barcode (e.g., make an API call, update the inventory, etc.)
+  const handleButtonClick = () => {
+    const products = [
+      { id: '123456', name: 'chair', location: 'chennai' },
+      { id: '234567', name: 'samsung', location: 'bangalore' },
+      { id: '345678', name: 'pen', location: 'coimbatore' },
+      // Add more products as needed
+    ];
+
+    const product = products.find((p) => p.id === productId);
+
+    if (product) {
+      setProductDetails(product);
+      setDetailsModalOpen(true);
+    } else {
+      setErrorModalOpen(true);
+      setTimeout(() => setErrorModalOpen(false), 2000); // Delay before closing the error modal
+    }
   };
 
+  const handleCloseErrorModal = () => {
+    setErrorModalOpen(false);
+  };
+
+  const handleCloseDetailsModal = () => {
+    setDetailsModalOpen(false);
+  };
+
+  const handleCleanup = () => {
+    setProductId('');
+  };
+
+  useEffect(() => {
+    handleCleanup();
+  }, [productDetails]);
+
   return (
-    
-    <div className="d-flex align-items-center justify-content-center vh-100">
-      <div className="container bg-dark p-3 border rounded">
-        <h2 className="mt-4 text-white">Barcode Scanner Integration</h2>
-        <div className="input-group mb-3">
+    <div>
+      <center><h1 className="text-center">Barcode Scanner</h1></center>
+
+      <div className="container d-flex align-items-center justify-content-center vh-100">
+        <div className="col-6">
           <input
             type="text"
-            className="form-control"
-            placeholder="Scan barcode"
-            value={scannedBarcode}
-            onChange={handleBarcodeScan}
+            className="form-control mb-3"
+            placeholder="Enter Barcode ID"
+            value={productId}
+            onChange={(e) => setProductId(e.target.value)}
           />
-          <div className="input-group-append">
-            <button className="btn btn-primary" type="button">Scan</button>
-          </div>
+          <center>
+            <button
+              className="btn btn-primary btn-block"
+              onClick={handleButtonClick}
+            >
+              Retrieve Product Details
+            </button>
+          </center>
+          <Modal show={detailsModalOpen} onHide={handleCloseDetailsModal} centered>
+            <Modal.Header closeButton>
+              <Modal.Title>Product Details</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {productDetails && (
+                <div>
+                  <p>
+                    <strong>ID:</strong> {productDetails.id}
+                  </p>
+                  <p>
+                    <strong>Name:</strong> {productDetails.name}
+                  </p>
+                  <p>
+                    <strong>Location:</strong> {productDetails.location}
+                  </p>
+                </div>
+              )}
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleCloseDetailsModal}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
+          <Modal show={errorModalOpen} onHide={handleCloseErrorModal} centered>
+            <Modal.Header closeButton>
+              <Modal.Title>Error</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              The product ID you entered is incorrect. Please try again.
+            </Modal.Body>
+          </Modal>
         </div>
-        {scannedBarcode && <p className="mt-2">Scanned Barcode: {scannedBarcode}</p>}
       </div>
     </div>
   );
 };
 
-export default BarcodeScannerIntegration;
+export default  BarcodeScannerIntegeration;
