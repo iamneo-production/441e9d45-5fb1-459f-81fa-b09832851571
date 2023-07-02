@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import NavbarComp from './NavbarComp';
 
 function PurchaseOrder() {
   const [purchaseOrders, setPurchaseOrders] = useState([]);
@@ -59,6 +60,7 @@ function PurchaseOrder() {
 
   return (
     <>
+    <NavbarComp />
     <div className='container'>
         <div className='py-4'>
         <table className='table border shadow'>

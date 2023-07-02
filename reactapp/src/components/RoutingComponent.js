@@ -8,31 +8,46 @@ import BarcodeScannerIntegration from './BarcodeScannerIntegration';
 import Reports from './Reports';
 import "../App.css"
 import PurchaseOrder from './PurchaseOrder';
-import HomeText from './HomeText';
+import ShipmentHome from './ShipmentHome';
+import AddShipment from './AddShipment';
+import EditShipment from './EditShipment';
+import ViewShipment from './ViewShipment';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Signup from './Signup';
+import Login from './Login';
+import Login_And_Signup_Page from './Login_And_Signup_Page';
+import WelcomePage from './WelcomePage';
 
-function Home() {
+function RoutingComponent() {
   return (
 
     <Router>
+      <ToastContainer/>
     <div>
-    <nav className="navbar navbar-expand-lg  navbar navbar-expand-sm bg-dark navbar-dark">
+    <Link to="/" style={styles.text}></Link>
+    {/* <nav className="navbar navbar-expand-lg  navbar navbar-expand-sm bg-dark navbar-dark">
         <div className="container-fluid"> 
-        <Link to="/" className='navbar-brand' style={styles.text}>IMS</Link>   
+          
         <Link to="/product" className='navbar-brand'>Product List</Link>
         <Link to="/dashboard" className='navbar-brand'>Inventory Dashboard</Link>
+        <Link className="navbar-brand" to="/shipment">Shipment</Link> 
         <Link to="/sales" className='navbar-brand'>Sales Tracker</Link>
         <Link to="/purchase" className='navbar-brand'>Purchase Order</Link>   
         <Link to="/locations" className='navbar-brand'>Location</Link>
         <Link to="/scanner" className='navbar-brand'>Barcode</Link>
         <Link className="navbar-brand" to="/reports">Reports</Link>
-        <Link className="navbar-brand" to="/shipment">Shipment</Link> 
+        
+        
         </div>
-      </nav>
+      </nav> */}
     </div>
 
     <div>
     <Routes>
-           <Route path="/" element={<HomeText />} />
+          
+           <Route path="/" element={<Login_And_Signup_Page />} />
+           <Route path="/welcome" element={<WelcomePage />} />
            <Route path="/product" element={<ProductList />} />
            <Route path="/dashboard" element={<InventoryDashboard />} />
            <Route path="/sales" element={<SalesTracker />} />
@@ -40,6 +55,12 @@ function Home() {
            <Route path="/scanner" element={<BarcodeScannerIntegration />} />
            <Route path="/reports" element={<Reports />} />
            <Route path="/purchase" element={<PurchaseOrder />} />
+           <Route path="/shipment" element={<ShipmentHome />} />
+           <Route path="/addshipment" element={<AddShipment />} />
+           <Route path="/editshipment/:id" element={<EditShipment />} />
+           <Route path="/viewshipment/:id" element={<ViewShipment />} />
+           <Route path="/login" element={<Login />} />
+           <Route path="/signup" element={<Signup />} />
     </Routes>
     </div>
     </Router>
@@ -52,4 +73,4 @@ const styles={
       }
 }
 
-export default Home;
+export default RoutingComponent;
