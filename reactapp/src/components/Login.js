@@ -1,11 +1,14 @@
 import { Button,Form, Input,Card, CardBody, CardHeader, Col, Container, FormGroup, Label, Row } from "reactstrap";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const Login=()=> {
     const[loginDetail,setLoginDetail]=useState({
         username:'',
         password:'',
     })
+
+    const navigate1=useNavigate();
 
 const handleChange=(event,field)=>{
     let actualValue=event.target.value
@@ -66,8 +69,11 @@ const handleFormSubmit=(event)=>{
                 </FormGroup>
 
                 <Container className="text-center">
-                <Button color="dark" outline>
+                <Button onClick={()=>navigate1('/welcome')} color="dark" outline>
                 Login
+                </Button>
+                <Button onClick={()=>navigate1('/')} color="dark" outline>
+                Go Back
                 </Button>
                 <Button onClick={handleReset} color="dark" outline type="reset" className="ms-2">
                 Reset

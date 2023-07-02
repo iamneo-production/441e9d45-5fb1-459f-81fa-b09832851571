@@ -1,6 +1,7 @@
 import { Row,Col,Button, Card, CardBody, CardHeader, Container, Form, FormGroup, Input, Label } from "reactstrap";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const Signup=()=> {
     const [data,setData]=useState({
         name: '',
@@ -8,6 +9,8 @@ const Signup=()=> {
         password:'',
         dob:'',
     })
+
+    const navigate2= useNavigate();
 
     const [error,setError]=useState({
         errors:{},
@@ -137,8 +140,11 @@ const Signup=()=> {
             </FormGroup>
 
                         <Container className="text-center">
-                        <Button outline color="dark">Register</Button>
+                        <Button onClick={()=>navigate2('/login')} outline color="dark">Register</Button>
                         <Button onClick={resetData} outline color="dark" className="ms-2" type="reset">Reset</Button>
+                        <Button onClick={()=>navigate2('/')} color="dark" outline>
+                        Go Back
+                        </Button>
                         </Container>
                     
                     </Form>

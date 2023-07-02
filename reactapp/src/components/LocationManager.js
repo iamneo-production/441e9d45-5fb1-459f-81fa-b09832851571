@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../App.css'
+import NavbarComp from './NavbarComp';
 const LocationManager = () => {
   const [locations, setLocations] = useState([]);
   const [newLocation, setNewLocation] = useState('');
@@ -40,6 +41,7 @@ const LocationManager = () => {
 
   return (
     <>
+    <NavbarComp />
       <div className="d-flex align-items-center justify-content-center vh-100">
         <div className="container bg-dark p-3 border rounded">
           <h2 className="mt-4 text-white">Add Location</h2>

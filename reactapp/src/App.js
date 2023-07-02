@@ -1,13 +1,13 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css'; 
-import Home from './components/Home';
+import RoutingComponent from './components/RoutingComponent';
 const App = () => {
   return (
     
     
     <div>
-      <Home />
+      <RoutingComponent />
     </div>
     
   );

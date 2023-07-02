@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Modal } from 'react-bootstrap';
+import NavbarComp from './NavbarComp';
 
 const  BarcodeScannerIntegeration = () => {
   const [productId, setProductId] = useState('');
@@ -45,6 +46,7 @@ const  BarcodeScannerIntegeration = () => {
 
   return (
     <div>
+      <NavbarComp />
       <center><h1 className="text-center">Barcode Scanner</h1></center>
 
       <div className="container d-flex align-items-center justify-content-center vh-100">

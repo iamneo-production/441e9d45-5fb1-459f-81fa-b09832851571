@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import NavbarComp from './NavbarComp';
 //import './Report.css';
 
 const Reports = () => {
@@ -60,6 +61,7 @@ const Reports = () => {
   
     return (
       <>
+      <NavbarComp />
       <div className='container'>
       <div className='py-4'>
         <h3>Inventory Levels</h3>
