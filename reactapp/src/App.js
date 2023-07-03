@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css'; 
 import RoutingComponent from './components/RoutingComponent';
+import './style.css';
 const App = () => {
   return (
     
