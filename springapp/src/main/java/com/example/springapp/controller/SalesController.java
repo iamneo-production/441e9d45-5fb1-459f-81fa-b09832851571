@@ -10,13 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin("http://localhost:8081")
 public class SalesController {
-
-    @GetMapping("/hello")
-    public @ResponseBody String getResponse(){
-        return "Hello";
-    }
 
     @Autowired
     private SalesRepository salesRepository;
