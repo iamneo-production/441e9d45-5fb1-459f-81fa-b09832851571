@@ -42,7 +42,7 @@ const LocationManager = () => {
   return (
     <>
     <NavbarComp />
-      <div className="d-flex align-items-center justify-content-center vh-100">
+      <div className="d-flex align-items-center justify-content-center vh-100 width:60%;">
         <div className="container bg-dark p-3 border rounded">
           <h2 className="mt-4 text-white">Add Location</h2>
           <div className="input-group mb-3">

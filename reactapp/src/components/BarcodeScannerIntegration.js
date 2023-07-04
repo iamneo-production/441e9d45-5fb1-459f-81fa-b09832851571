@@ -47,7 +47,7 @@ const  BarcodeScannerIntegeration = () => {
   return (
     <div>
       <NavbarComp />
-      <center><h1 className="text-center">Barcode Scanner</h1></center>
+      <center><h1 className="text-align:center">Barcode Scanner</h1></center>
 
       <div className="container d-flex align-items-center justify-content-center vh-100">
         <div className="col-6">
