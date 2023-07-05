@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import NavbarComp from "./NavbarComp";
 
 export default function ShipmentHome() {
   const [users, setUsers] = useState([]);
@@ -22,6 +23,8 @@ export default function ShipmentHome() {
   };
 
   return (
+    <>
+    <NavbarComp />
     <div className="container">
       <div className="py-4">
         <div className="float-container">
@@ -78,5 +81,6 @@ export default function ShipmentHome() {
         </table>
       </div>
     </div>
+    </>
   );
 }

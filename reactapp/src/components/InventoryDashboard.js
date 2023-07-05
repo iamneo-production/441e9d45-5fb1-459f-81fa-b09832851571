@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import NavbarComp from './NavbarComp';
 
 const InventoryDashboard = () => {
   const [inventory, setInventory] = useState([]);
@@ -62,6 +63,7 @@ const InventoryDashboard = () => {
 
   return (
     <>
+    <NavbarComp />
     <div className='container'>
     <div className='py-4'>
       <table className='table border shadow'>
@@ -88,7 +90,8 @@ const InventoryDashboard = () => {
       </table>
       </div>
     </div>  
-
+    
+    
     <div className='container w-50 justify-content-center'>
       <div className='row'>
         <div className='container justify-content-center bg-dark col-md-8 border rounded p-4 mt-2 text-white'>
@@ -124,7 +127,8 @@ const InventoryDashboard = () => {
           </div>
           </div>
     </div>
-        </>
+    
+    </>
   );
 };
 

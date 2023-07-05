@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import NavbarComp from "./NavbarComp";
 
 export default function AddShipment() {
   let navigate = useNavigate();
@@ -26,7 +27,10 @@ export default function AddShipment() {
   };
 
   return (
+    
+    <>    
     <div className='container w-50 justify-content-center'>
+
     <div className='row'>
       <div className='container justify-content-center bg-dark col-md-8 border rounded p-4 mt-2 text-white'>
         <h2 className='text-center m-4'>Shipment Details Entry</h2>
@@ -98,5 +102,6 @@ export default function AddShipment() {
         </div>
       </div>
     </div>
+    </>
   );
 }
