@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import '../App.css'
+import NavbarComp from './NavbarComp';
 const LocationManager = () => {
   const [locations, setLocations] = useState([]);
   const [newLocation, setNewLocation] = useState('');
@@ -39,30 +40,44 @@ const LocationManager = () => {
   };
 
   return (
-    <div>
-      <h2>Location Manager</h2>
-      <h3>Locations</h3>
-      <ul>
-        {locations.map((location) => (
-          <li key={location.id}>
-            {location.name}{' '}
-            <button onClick={() => deleteLocation(location.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-      <h3>Add Location</h3>
-      <form onSubmit={addLocation}>
-        <label>
-          Location Name:
-          <input
-            type="text"
-            value={newLocation}
-            onChange={(e) => setNewLocation(e.target.value)}
-          />
-        </label>
-        <button type="submit">Add Location</button>
-      </form>
-    </div>
+    <>
+    <NavbarComp />
+      <div className="d-flex align-items-center justify-content-center vh-100 width:60%;">
+        <div className="container bg-dark p-3 border rounded">
+          <h2 className="mt-4 text-white">Add Location</h2>
+          <div className="input-group mb-3">
+
+            <ul>
+              {locations.map((location) => (
+                <li key={location.id}>
+                  {location.name}{' '}
+                  <button onClick={() => deleteLocation(location.id)}>Delete</button>
+                </li>
+              ))}
+            </ul>
+            <div className="float-container">
+            <form onSubmit={addLocation}>
+              <div className="float-location">
+              <input
+                type="text"
+                placeholder="Add Location"
+                className='form-control'
+                value={newLocation}
+                onChange={(e) => setNewLocation(e.target.value)}
+              />
+              </div>
+
+            <div className="float-location">
+            <div className="input-group-append">
+              <button className="btn btn-primary" type="button">Add Location</button>
+            </div>
+            </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
