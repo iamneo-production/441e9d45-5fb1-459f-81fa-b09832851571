@@ -23,6 +23,9 @@
 	<filteredResources>
 		<filter>
 <<<<<<< HEAD
+			<id>1688064004138</id>
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 			<id>1687531329830</id>
 =======
@@ -40,11 +43,12 @@
 			<id>1687533808047</id>
 >>>>>>> Project-Workspace-Geetanjali00
 >>>>>>> adc337ae313de822189b318f129b9f6c3984bc78
+>>>>>>> 5f1b3fd5b9c7be198ea2ed138c141f6bdffab969
 			<name></name>
 			<type>30</type>
 			<matcher>
 				<id>org.eclipse.core.resources.regexFilterMatcher</id>
-				<arguments>node_modules|.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+				<arguments>node_modules|\.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
 			</matcher>
 		</filter>
 	</filteredResources>
