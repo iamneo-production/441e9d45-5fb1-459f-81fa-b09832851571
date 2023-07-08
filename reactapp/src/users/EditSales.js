@@ -11,7 +11,7 @@ export default function EditSales() {
     productid: "",
     quantity: "",
     price: "",
-    timestamp: "",
+    timestamp:  new Date().toISOString(),
   });
 
   const { productid, quantity, price, timestamp } = user;
@@ -22,7 +22,7 @@ export default function EditSales() {
 
   useEffect(() => {
     const loadUser = async () => {
-      const result = await axios.get(`http://localhost:8081/sales/${id}`);
+      const result = await axios.get(`https://8080-aabbafaeecebdfaddeebcaddaceaeaadbdbabf.project.examly.io/api/get/${id}`);
       setUser(result.data);
     };
     loadUser();
@@ -30,7 +30,7 @@ export default function EditSales() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:8081/updatesales/${id}`, user);
+    await axios.put(`https://8080-aabbafaeecebdfaddeebcaddaceaeaadbdbabf.project.examly.io/api/update`, user);
     navigate("/");
   };
 

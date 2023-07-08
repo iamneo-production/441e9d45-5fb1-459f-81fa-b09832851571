@@ -1,41 +1,40 @@
 package com.example.springapp.service;
-import com.example.springapp.model.Sales;
-import com.example.springapp.repository.SalesRepository;
+
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.Optional;
+import com.example.springapp.model.Sales;
+import com.example.springapp.repository.SalesRepository;
 
-
-
-
-@Transactional
 @Service
-public class SalesService {
+public class SalesService implements SalesServiceInterface {
 
-    @Autowired
-    public SalesRepository salesRepository;
+	@Autowired
+	private SalesRepository repository;
 
-    public void insert(Sales sales) {
-        salesRepository.save(sales);
-    }
+	@Override
+	public Sales addSales(Sales sales) {
+		Sales savedSales = repository.save(sales);
+		return savedSales;
 
-    public Optional<Sales> find(Long id) {
-        return salesRepository.findById(id);
-    }
+	}
 
-    public Iterable<Sales> findAll() {
-        return salesRepository.findAll();
-    }
+	@Override
+	public List<Sales> getAllSales() {
+		return repository.findAll();
+	}
 
-    public void updateSales(Sales sales) {
-        salesRepository.save(sales);
-    }
+	@Override
+	public Sales getSalesById(Long salesidL) {
+		return repository.findById(salesidL).get();
+	}
 
-    public void deleteSales(Sales sales) {
-        salesRepository.delete(sales);
-    }
-
+	@Override
+	public void deleteSalesById(Long salesidL) {
+		repository.deleteById(salesidL);
+	}
 
 }

@@ -1,56 +1,53 @@
 package com.example.springapp.controller;
-
-import com.example.springapp.exception.SalesNotFoundException;
-import com.example.springapp.model.Sales;
-import com.example.springapp.repository.SalesRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.example.springapp.model.Sales;
+import com.example.springapp.service.SalesServiceInterface;
+
 @RestController
-@CrossOrigin("http://localhost:8081")
+@CrossOrigin("https://8081-aabbafaeecebdfaddeebcaddaceaeaadbdbabf.project.examly.io")
+@RequestMapping("/api")
 public class SalesController {
 
-    @Autowired
-    private SalesRepository salesRepository;
+	@Autowired
+	private SalesServiceInterface salesServiceInterface;
 
-    @PostMapping("/postsales")
-    Sales newSales(@RequestBody Sales newSales) {
-        return salesRepository.save(newSales);
-    }
+	@PostMapping("/post")
+	public ResponseEntity<Sales> addSales(@RequestBody Sales sales) {
+		Sales salesSaved = salesServiceInterface.addSales(sales);
+		return new ResponseEntity<Sales>(salesSaved, HttpStatus.CREATED);
+	}
 
-    @GetMapping("/getallsales")
-    List<Sales> getAllSales() {
-        return salesRepository.findAll();
-    }
+	@GetMapping("/getall")
+	public ResponseEntity<List<Sales>> getAllSales() {
 
-    @GetMapping("/sales/{id}")
-    Sales getSalesById(@PathVariable Long id) {
-        return salesRepository.findById(id)
-                .orElseThrow(() -> new SalesNotFoundException(id));
-    }
+		List<Sales> listOfAllSales = salesServiceInterface.getAllSales();
+		return new ResponseEntity<List<Sales>>(listOfAllSales, HttpStatus.OK);
+	}
 
-    @PutMapping("/updatesales/{id}")
-    Sales updateSales(@RequestBody Sales newSales, @PathVariable Long id) {
-        return salesRepository.findById(id)
-                .map(sales -> {
-                    sales.setQuantity(newSales.getQuantity());
-                    sales.setProductid(newSales.getProductid());
-                    sales.setPrice(newSales.getPrice());
-                    sales.setTimestamp(newSales.getTimestamp());
-                    return salesRepository.save(sales);
-                }).orElseThrow(() -> new SalesNotFoundException(id));
-    }
+	@GetMapping("/get/{salesid}")
+	public ResponseEntity<Sales> getShipById(@PathVariable("salesid") Long salesidL) {
 
-    @DeleteMapping("/deletesales/{id}")
-    String deleteSales(@PathVariable Long id) {
-        if (!salesRepository.existsById(id)) {
-            throw new SalesNotFoundException(id);
-        }
-        salesRepository.deleteById(id);
-        return "Sales with id " + id + " has been deleted success.";
-    }
+		Sales salesRetrieved = salesServiceInterface.getSalesById(salesidL);
+		return new ResponseEntity<Sales>(salesRetrieved, HttpStatus.OK);
+	}
+
+	@DeleteMapping("/delete/{salesid}")
+	public ResponseEntity<Void> deleteSalesById(@PathVariable("salesid") Long salesidL) {
+
+		salesServiceInterface.deleteSalesById(salesidL);
+		return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
+	}
+
+	@PutMapping("/update")
+	public ResponseEntity<Sales> updateSales(@RequestBody Sales sales) {
+		Sales salesSaved = salesServiceInterface.addSales(sales);
+		return new ResponseEntity<Sales>(salesSaved, HttpStatus.CREATED);
+	}
 
 }

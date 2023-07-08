@@ -11,12 +11,12 @@ export default function Home() {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:8081/getallsales");
+    const result = await axios.get("https://8080-aabbafaeecebdfaddeebcaddaceaeaadbdbabf.project.examly.io/api/getall");
     setUsers(result.data);
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:8081/deletesales/${id}`);
+    await axios.delete(`https://8080-aabbafaeecebdfaddeebcaddaceaeaadbdbabf.project.examly.io/api/delete/${id}`);
     loadUsers();
   };
 
