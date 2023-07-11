@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavbarComp from './NavbarComp';
-
+import { ToastContainer,toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css"
 const InventoryDashboard = () => {
   const [inventories, setInventory] = useState([]);
-  const [lowInventoryAlert, setLowInventoryAlert] = useState(false);
   const [productID, setProductId] = useState('');
   const [quantity, setQuantity] = useState('');
   const [location, setLocation] = useState('');
@@ -16,9 +16,18 @@ const InventoryDashboard = () => {
     fetchInventory();
   }, []);
 
+  const checkLowInventory = () => {
+    inventories.forEach((inventory) => {
+      if (inventory.quantity < 10) {
+        const message = `Low inventory for product ID: ${inventory.id}`;
+        toast.error(message);
+      }
+    });
+  };
+
   const fetchInventory = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/inventory');
+      const response = await axios.get('http://localhost:8090/inventory');
       setInventory(response.data);
     } catch (error) {
       console.error(error);
@@ -37,7 +46,7 @@ const InventoryDashboard = () => {
     };
 
     try {
-      await axios.post('http://localhost:8080/inventory', newInventory);
+      await axios.post('http://localhost:8090/inventory', newInventory);
       fetchInventory();
       resetForm();
     } catch (error) {
@@ -47,7 +56,7 @@ const InventoryDashboard = () => {
 
   const handleDelete = async (inventoryId) => {
     try {
-      await axios.delete(`http://localhost:8080/inventory/${inventoryId}`);
+      await axios.delete(`http://localhost:8090/inventory/${inventoryId}`);
       fetchInventory();
     } catch (error) {
       console.error('Error deleting product:', error);
@@ -79,7 +88,7 @@ const InventoryDashboard = () => {
     };
 
     try {
-      await axios.put(`http://localhost:8080/inventory/${editInventoryID}`, updatedInventory);
+      await axios.put(`http://localhost:8090/inventory/${editInventoryID}`, updatedInventory);
       fetchInventory();
       resetForm();
     } catch (error) {
@@ -101,6 +110,7 @@ const InventoryDashboard = () => {
       <div className='container'>
         <div className='py-4'>
           <div className='mb-3 d-flex justify-content-end'>
+          <button onClick={checkLowInventory} className='btn btn-primary'>Check Inventory Level</button>
             {!showForm ? (
               <button type='button' className='btn btn-primary' onClick={() => setShowForm(true)}>
                 Add new Inventory order
@@ -212,6 +222,7 @@ const InventoryDashboard = () => {
           </div>
         </div>
       )}
+       <ToastContainer />
     </>
   );
 };

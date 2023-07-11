@@ -9,11 +9,6 @@ import org.springframework.stereotype.Service;
 import com.example.springapp.model.Product;
 import com.example.springapp.repository.ProductRepository;
 
-import javax.persistence.EntityNotFoundException;
-
-import org.springframework.stereotype.Service;
-
-
 @Service
 public class ProductService {
 
@@ -28,13 +23,7 @@ public class ProductService {
     }
 
     public Product getProductById(Long id) {
-    	List<Product> list = productRepository.findAll();
-        for(Product p:list) {
-        	if(p.getId().equals(id)) {
-        		return p;
-        	}
-        }
-        return null;
+        return productRepository.findProductById(id);
     }
 
     public List<Product> getAllProduct() {
@@ -57,23 +46,11 @@ public class ProductService {
     }
 
     public boolean deleteProduct(Long id) {
-    	int ind = -1;
-        List<Product> list = productRepository.findAll();
-        for(int i=0; i<list.size(); i++) {
-        	Product p = list.get(i);
-        	if(p.getId().equals(id)) {
-        		ind = i;
-        		break;
-        	}
+        try {
+            productRepository.deleteProductById(id);
+            return true;
+        } catch (Exception ex) {
+            return false;
         }
-        if(ind == -1) {
-        	return false;
-        }
-        list.remove(ind);
-        productRepository.deleteAll();
-        for(Product p:list) {
-        	productRepository.save(p);
-        }
-        return true;
     }
 }

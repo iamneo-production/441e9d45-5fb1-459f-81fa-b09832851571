@@ -3,22 +3,27 @@ package com.example.springapp.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import com.example.springapp.model.Inventory;
 import com.example.springapp.model.Product;
 import com.example.springapp.repository.InventoryRepository;
+import com.example.springapp.repository.ProductRepository;
 
 @Service
 public class InventoryService {
 
     private final InventoryRepository inventoryRepository;
-
+    
     public InventoryService(InventoryRepository inventoryRepository) {
         this.inventoryRepository = inventoryRepository;
     }
+    
+
 
     public Inventory createInventory(Inventory inventory) {
+        
         return inventoryRepository.save(inventory);
+
     }
 
     public Inventory getInventoryById(Long id) {

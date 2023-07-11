@@ -2,14 +2,7 @@ package com.example.springapp.model;
 
 import java.util.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "inventory")
@@ -28,7 +21,7 @@ public class Inventory {
 	@JoinColumn(name = "product_id")
 	private Product product;
 
-	public Inventory(Long id, Long quantity, String location, Date timestamp, Product product) {
+	public Inventory(Long id, Product product, Long quantity, String location, Date timestamp) {
 		super();
 		this.id = id;
 		this.quantity = quantity;
