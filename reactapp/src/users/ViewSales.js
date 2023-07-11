@@ -17,7 +17,7 @@ export default function ViewSales() {
   }, []);
 
   const loadUser = async () => {
-    const result = await axios.get(`https://8080-aabbafaeecebdfaddeebcaddaceaeaadbdbabf.project.examly.io/api/get/${id}`);
+    const result = await axios.get(`https://8080-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io/get/${id}`);
     setUser(result.data);
   };
 

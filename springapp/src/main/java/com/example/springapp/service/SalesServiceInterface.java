@@ -10,8 +10,8 @@ public interface SalesServiceInterface {
 
 	public List<Sales> getAllSales();
 
-	public Sales getSalesById(Long salesidL);
+	public Sales getSalesById(Long salesid);
 
-	public void deleteSalesById(Long salesidL);
+	public void deleteSalesById(Long salesid);
 
 }

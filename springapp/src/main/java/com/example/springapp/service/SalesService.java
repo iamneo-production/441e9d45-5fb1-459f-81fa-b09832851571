@@ -17,8 +17,7 @@ public class SalesService implements SalesServiceInterface {
 
 	@Override
 	public Sales addSales(Sales sales) {
-		Sales savedSales = repository.save(sales);
-		return savedSales;
+		return repository.save(sales);
 
 	}
 
@@ -28,13 +27,13 @@ public class SalesService implements SalesServiceInterface {
 	}
 
 	@Override
-	public Sales getSalesById(Long salesidL) {
-		return repository.findById(salesidL).get();
+	public Sales getSalesById(Long salesid) {
+		return repository.findById(salesid).get();
 	}
 
 	@Override
-	public void deleteSalesById(Long salesidL) {
-		repository.deleteById(salesidL);
+	public void deleteSalesById(Long salesid) {
+		repository.deleteById(salesid);
 	}
 
 }

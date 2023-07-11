@@ -10,8 +10,8 @@ import com.example.springapp.model.Sales;
 import com.example.springapp.service.SalesServiceInterface;
 
 @RestController
-@CrossOrigin("https://8081-aabbafaeecebdfaddeebcaddaceaeaadbdbabf.project.examly.io")
-@RequestMapping("/api")
+@CrossOrigin("https://8081-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io")
+@RequestMapping("/")
 public class SalesController {
 
 	@Autowired
@@ -20,34 +20,34 @@ public class SalesController {
 	@PostMapping("/post")
 	public ResponseEntity<Sales> addSales(@RequestBody Sales sales) {
 		Sales salesSaved = salesServiceInterface.addSales(sales);
-		return new ResponseEntity<Sales>(salesSaved, HttpStatus.CREATED);
+		return new ResponseEntity<>(salesSaved, HttpStatus.CREATED);
 	}
 
 	@GetMapping("/getall")
 	public ResponseEntity<List<Sales>> getAllSales() {
 
 		List<Sales> listOfAllSales = salesServiceInterface.getAllSales();
-		return new ResponseEntity<List<Sales>>(listOfAllSales, HttpStatus.OK);
+		return new ResponseEntity<>(listOfAllSales, HttpStatus.OK);
 	}
 
 	@GetMapping("/get/{salesid}")
-	public ResponseEntity<Sales> getShipById(@PathVariable("salesid") Long salesidL) {
+	public ResponseEntity<Sales> getShipById(@PathVariable("salesid") Long salesid) {
 
-		Sales salesRetrieved = salesServiceInterface.getSalesById(salesidL);
-		return new ResponseEntity<Sales>(salesRetrieved, HttpStatus.OK);
+		Sales salesRetrieved = salesServiceInterface.getSalesById(salesid);
+		return new ResponseEntity<>(salesRetrieved, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete/{salesid}")
-	public ResponseEntity<Void> deleteSalesById(@PathVariable("salesid") Long salesidL) {
+	public ResponseEntity<Void> deleteSalesById(@PathVariable("salesid") Long salesid) {
 
-		salesServiceInterface.deleteSalesById(salesidL);
-		return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
+		salesServiceInterface.deleteSalesById(salesid);
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 
 	@PutMapping("/update")
 	public ResponseEntity<Sales> updateSales(@RequestBody Sales sales) {
 		Sales salesSaved = salesServiceInterface.addSales(sales);
-		return new ResponseEntity<Sales>(salesSaved, HttpStatus.CREATED);
+		return new ResponseEntity<>(salesSaved, HttpStatus.CREATED);
 	}
 
 }

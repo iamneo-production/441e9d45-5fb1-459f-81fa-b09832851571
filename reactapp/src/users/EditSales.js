@@ -11,7 +11,7 @@ export default function EditSales() {
     productid: "",
     quantity: "",
     price: "",
-    timestamp:  new Date().toISOString(),
+    timestamp: "",
   });
 
   const { productid, quantity, price, timestamp } = user;
@@ -21,19 +21,19 @@ export default function EditSales() {
   };
 
   useEffect(() => {
-    const loadUser = async () => {
-      const result = await axios.get(`https://8080-aabbafaeecebdfaddeebcaddaceaeaadbdbabf.project.examly.io/api/get/${id}`);
-      setUser(result.data);
-    };
     loadUser();
   }, []);
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`https://8080-aabbafaeecebdfaddeebcaddaceaeaadbdbabf.project.examly.io/api/update`, user);
+    await axios.put(`https://8080-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io/update`, user);
     navigate("/");
   };
-
+ 
+  const loadUser = async () => {
+    const result = await axios.get(`https://8080-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io/get/${id}`);
+    setUser(result.data);
+  };
 
   return (
     <div className="container">

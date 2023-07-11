@@ -9,7 +9,7 @@ export default function AddSales() {
     productid: "",
     quantity: "",
     price: "",
-    timestamp:  new Date().toISOString(),
+    timestamp: "",
     
   });
 
@@ -21,8 +21,8 @@ export default function AddSales() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("https://8080-aabbafaeecebdfaddeebcaddaceaeaadbdbabf.project.examly.io/api/post", user);
-    navigate("/sales");
+    await axios.post("https://8080-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io/post", user);
+    navigate("/");
   };
 
   return (
