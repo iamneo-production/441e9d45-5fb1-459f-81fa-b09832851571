@@ -18,21 +18,58 @@ public class PurchaseOrderService {
 		this.purchaseOrderRepository = purchaseOrderRepository;
 	}
 	
+	public PurchaseOrder createPurchaseOrder(PurchaseOrder purchaseOrder) {
+        return purchaseOrderRepository.save(purchaseOrder);
+    }
+	
 	public List<PurchaseOrder> getAllPurchaseOrder() {
         return purchaseOrderRepository.findAll();
     }
 	
 	
 	
-	public List<PurchaseOrder> getPurchaseOrderByProductId(Long id) {
+	public PurchaseOrder getPurchaseOrderByProductId(Long id) {
     	List<PurchaseOrder> list = purchaseOrderRepository.findAll();
-		List<PurchaseOrder> ans = new ArrayList<>();
         for(PurchaseOrder p:list) {
         	if(p.getId().equals(id)) {
-        		ans.add(p);
+        		return p;
         	}
         }
-        return ans;
+        return null;
+    }
+	
+	public PurchaseOrder updatePurchaseOrder(Long id, PurchaseOrder updatedPurchaseOrder) {
+        PurchaseOrder existingPurchaseOrder = getPurchaseOrderByProductId(id);
+        if (existingPurchaseOrder != null) {
+        	existingPurchaseOrder.setQuantity(updatedPurchaseOrder.getQuantity());
+        	existingPurchaseOrder.setSupplier(updatedPurchaseOrder.getSupplier());
+        	existingPurchaseOrder.setTimestamp(updatedPurchaseOrder.getTimestamp());
+        	existingPurchaseOrder.setProductId(updatedPurchaseOrder.getProductId());
+            return purchaseOrderRepository.save(existingPurchaseOrder);
+        } else {
+            return null;
+        }
+    }
+
+    public boolean deletePurchaseOrder(Long id) {
+    	int ind = -1;
+        List<PurchaseOrder> list = purchaseOrderRepository.findAll();
+        for(int i=0; i<list.size(); i++) {
+        	PurchaseOrder p = list.get(i);
+        	if(p.getId().equals(id)) {
+        		ind = i;
+        		break;
+        	}
+        }
+        if(ind == -1) {
+        	return false;
+        }
+        list.remove(ind);
+        purchaseOrderRepository.deleteAll();
+        for(PurchaseOrder p:list) {
+        	purchaseOrderRepository.save(p);
+        }
+        return true;
     }
 	
 }

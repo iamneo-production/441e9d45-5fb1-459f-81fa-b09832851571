@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +22,11 @@ import com.example.springapp.model.PurchaseOrder;
 import com.example.springapp.repository.ProductRepository;
 import com.example.springapp.repository.PurchaseOrderRepository;
 import com.example.springapp.service.PurchaseOrderService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("/purchase-order")
+@CrossOrigin
 public class PurchaseOrderController {
 	
 	private final PurchaseOrderService purchaseOrderService;
@@ -33,6 +35,12 @@ public class PurchaseOrderController {
 		this.purchaseOrderService = purchaseOrderService;
 	}
 	
+	@PostMapping
+	public ResponseEntity<PurchaseOrder> createPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder) {
+        PurchaseOrder createdPurchaseOrder = purchaseOrderService.createPurchaseOrder(purchaseOrder);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdPurchaseOrder);
+    }
+	
 	@GetMapping
 	public ResponseEntity<List<PurchaseOrder>> getAllPurchaseOrder() {
         List<PurchaseOrder> purchaseOrderList = purchaseOrderService.getAllPurchaseOrder();
@@ -40,12 +48,33 @@ public class PurchaseOrderController {
     }
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<List<PurchaseOrder>> getPurchaseOrderByProductId(@PathVariable Long id) {
-        List<PurchaseOrder> purchaseOrders = purchaseOrderService.getPurchaseOrderByProductId(id);
-        if (purchaseOrders.isEmpty()) {
+	public ResponseEntity<PurchaseOrder> getPurchaseOrderByProductId(@PathVariable Long id) {
+        PurchaseOrder purchaseOrder = purchaseOrderService.getPurchaseOrderByProductId(id);
+        if (purchaseOrder != null) {
+            return new ResponseEntity<>(purchaseOrder, HttpStatus.OK);
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(purchaseOrders, HttpStatus.OK);
+    }
+	
+	@PutMapping("/{id}")
+    public ResponseEntity<PurchaseOrder> updatePurchaseOrder(@PathVariable Long id, @RequestBody PurchaseOrder purchaseOrder) {
+        PurchaseOrder updatedPurchaseOrder = purchaseOrderService.updatePurchaseOrder(id, purchaseOrder);
+        if (updatedPurchaseOrder != null) {
+            return ResponseEntity.ok(updatedPurchaseOrder);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePurchaseOrder(@PathVariable Long id) {
+        boolean deleted = purchaseOrderService.deletePurchaseOrder(id);
+        if (deleted) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 	
 }
