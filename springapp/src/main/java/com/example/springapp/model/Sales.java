@@ -27,6 +27,6 @@ public class Sales {
 	private Long productid;
 	private Long quantity;
 	private Double price;
-	private String timestamp;
+	private Date timestamp;
 
 }

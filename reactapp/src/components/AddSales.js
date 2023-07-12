@@ -1,17 +1,17 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import NavbarComp from './NavbarComp';
 
-export default function EditSales() {
+export default function AddSales() {
   let navigate = useNavigate();
-
-  const { id } = useParams();
 
   const [user, setUser] = useState({
     productid: "",
     quantity: "",
     price: "",
     timestamp: "",
+    
   });
 
   const { productid, quantity, price, timestamp } = user;
@@ -20,26 +20,19 @@ export default function EditSales() {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
-    loadUser();
-  }, []);
-
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`https://8080-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io/update`, user);
-    navigate("/");
-  };
- 
-  const loadUser = async () => {
-    const result = await axios.get(`https://8080-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io/get/${id}`);
-    setUser(result.data);
+    await axios.post("https://8080-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io/sales/post", user);
+    navigate("/sales");
   };
 
   return (
-    <div className="container">
+    <>
+    <NavbarComp />
+    <div className="container w-50 p-4 justify-content-center">
       <div className="row">
-        <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-          <h2 className="text-center m-4">Edit Sales Details</h2>
+        <div className="container justify-content-center bg-dark col-md-8 border rounded p-4 mt-2 text-white">
+          <h2 className="text-center m-4">Sales Details Entry</h2>
 
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3">
@@ -75,7 +68,7 @@ export default function EditSales() {
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Enter product price"
+                placeholder="Enter Product Price"
                 name="price"
                 value={price}
                 onChange={(e) => onInputChange(e)}
@@ -94,15 +87,19 @@ export default function EditSales() {
                 onChange={(e) => onInputChange(e)}
               />
             </div>
+            
+            <center>
             <button type="submit" className="btn btn-outline-success">
-              Update
+              Place Sale
             </button>
-            <Link className="btn btn-outline-danger mx-2" to="/">
+            <Link className="btn btn-outline-danger mx-2" to="/sales">
               Cancel
             </Link>
+            </center>
           </form>
         </div>
       </div>
     </div>
+    </>
   );
 }

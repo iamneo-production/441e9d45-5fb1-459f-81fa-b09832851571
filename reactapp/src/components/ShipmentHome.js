@@ -1,36 +1,48 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import NavbarComp from "./NavbarComp";
 
-export default function Home() {
+export default function ShipmentHome() {
   const [users, setUsers] = useState([]);
 
+  
 
   useEffect(() => {
-    loadUsers();
+    fetchShipments();
   }, []);
 
-  const loadUsers = async () => {
-    const result = await axios.get("https://8080-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io/getall");
+  const fetchShipments = async () => {
+    const result = await axios.get("http://localhost:8081/api/getall");
     setUsers(result.data);
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`https://8080-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io/delete/${id}`);
-    loadUsers();
+    await axios.delete(`http://localhost:8081/api/delete/${id}`);
+    fetchShipments();
   };
 
   return (
+    <>
+    <NavbarComp />
     <div className="container">
       <div className="py-4">
+        <div className="float-container">
+          <div className="float-contain" >
+      <Link className="btn btn-dark" to="/addshipment">
+            Add Shipment Details
+          </Link>
+          </div>
+          </div>
         <table className="table border shadow">
           <thead>
             <tr>
-              <th scope="col">SI.NO</th>
+              <th scope="col">ID</th>
               <th scope="col">Product_ID</th>
               <th scope="col">Quantity</th>
-              <th scope="col">Price</th>
-              <th scope="col">Date</th>
+              <th scope="col">Location</th>
+              <th scope="col">Timestamp</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -41,23 +53,23 @@ export default function Home() {
                 </th>
                 <td>{user.productid}</td>
                 <td>{user.quantity}</td>
-                <td>{user.price}</td>
+                <td>{user.location}</td>
                 <td>{user.timestamp}</td>
                 <td>
                   <Link
                     className="btn btn-info"
-                    to={`/viewsales/${user.id}`}
+                    to={`/viewshipment/${user.id}`}
                   >
                     View
                   </Link>
                   <Link
                     className="btn btn-outline-primary mx-2"
-                    to={`/editsales/${user.id}`}
+                    to={`/editshipment/${user.id}`}
                   >
                     Edit
                   </Link>
                   <button
-                    className="btn btn-dark"
+                    className="btn btn-danger"
                     onClick={() => deleteUser(user.id)}
                   >
                     Delete
@@ -69,5 +81,6 @@ export default function Home() {
         </table>
       </div>
     </div>
+    </>
   );
 }

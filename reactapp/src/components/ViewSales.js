@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect,useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import NavbarComp from './NavbarComp';
 
 export default function ViewSales() {
   const [user, setUser] = useState({
@@ -17,14 +18,16 @@ export default function ViewSales() {
   }, []);
 
   const loadUser = async () => {
-    const result = await axios.get(`https://8080-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io/get/${id}`);
+    const result = await axios.get(`https://8080-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io/sales/get/${id}`);
     setUser(result.data);
   };
 
   return (
-    <div className="container">
+    <>
+    <NavbarComp />
+    <div className="container w-50 p-4 justify-content-center">
       <div className="row">
-        <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
+        <div className="container justify-content-center bg-dark col-md-8 border rounded p-4 mt-2 text-white">
           <h2 className="text-center m-4">Sales Details</h2>
 
           <div className="card">
@@ -50,11 +53,14 @@ export default function ViewSales() {
               </ul>
             </div>
           </div>
-          <Link className="btn btn-secondary" to={"/"}>
+          <center>
+          <Link className="btn btn-secondary mb-2 m-4" to={"/sales"}>
             Back to Sales
           </Link>
+          </center>
         </div>
       </div>
     </div>
+    </>
   );
 }

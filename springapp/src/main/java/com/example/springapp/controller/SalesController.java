@@ -11,7 +11,7 @@ import com.example.springapp.service.SalesServiceInterface;
 
 @RestController
 @CrossOrigin("https://8081-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io")
-@RequestMapping("/")
+@RequestMapping("/sales")
 public class SalesController {
 
 	@Autowired
@@ -31,7 +31,7 @@ public class SalesController {
 	}
 
 	@GetMapping("/get/{salesid}")
-	public ResponseEntity<Sales> getShipById(@PathVariable("salesid") Long salesid) {
+	public ResponseEntity<Sales> getSalesById(@PathVariable("salesid") Long salesid) {
 
 		Sales salesRetrieved = salesServiceInterface.getSalesById(salesid);
 		return new ResponseEntity<>(salesRetrieved, HttpStatus.OK);
