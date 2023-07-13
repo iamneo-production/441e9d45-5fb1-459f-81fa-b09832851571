@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.springapp.model.Shipment;
-import com.example.springapp.repository.ShipmentCrudRepo;
+import com.example.springapp.repository.ShipmentRepository;
 
 @Service
 public class ShipmentService implements ShipmentServiceInterface {
 
 	@Autowired
-	private ShipmentCrudRepo crudRepo;
+	private ShipmentRepository crudRepo;
 
 	@Override
 	public Shipment addShipment(Shipment shipment) {
