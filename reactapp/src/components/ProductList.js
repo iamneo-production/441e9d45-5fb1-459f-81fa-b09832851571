@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import NavbarComp from './NavbarComp';
 
 
 const ProductList = () => {
@@ -17,7 +18,7 @@ const ProductList = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('/api/products');
+      const response = await axios.get('http://localhost:8080/product');
       setProducts(response.data);
     } catch (error) {
       console.error(error);
@@ -37,7 +38,7 @@ const ProductList = () => {
     };
 
     try {
-      await axios.post('/api/products', newProduct);
+      await axios.post('http://localhost:8080/product', newProduct);
       fetchProducts();
       resetForm();
     } catch (error) {
@@ -47,7 +48,7 @@ const ProductList = () => {
 
   const handleDeleteProduct = async (productId) => {
     try {
-      await axios.delete(`/api/products/${productId}`);
+      await axios.delete(`http://localhost:8080/product/${productId}`);
       fetchProducts();
     } catch (error) {
       console.error(error);
@@ -65,6 +66,7 @@ const ProductList = () => {
 
   return (
     <>
+    <NavbarComp />
     <div className='container'>
       <div className='py-4'>
       <table className='table border shadow'>

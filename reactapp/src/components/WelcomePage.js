@@ -1,14 +1,17 @@
 import React from 'react'
-
-function HomeText() {
+import 'bootstrap/dist/css/bootstrap.css';
+import NavbarComp from './NavbarComp';
+function WelcomePage() {
   return (
-    <div style={styles.hometext}>
-        Welcome To Inventory Management System</div>
+    <>
+    <NavbarComp />
+    <h1 style={styles.welcometext}>Welcome To IMS</h1>
+
+    </>
   )
 }
-
 const styles = {
-    hometext: {
+    welcometext: {
         fontStyle:'italic',
         fontSize:'35px',
         maxWidth: '700px',
@@ -20,4 +23,5 @@ const styles = {
     }
 }
 
-export default HomeText
+
+export default WelcomePage
