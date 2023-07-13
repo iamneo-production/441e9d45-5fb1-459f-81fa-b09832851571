@@ -7,6 +7,6 @@ com/example/springapp/repository/ProductRepository.class
 com/example/springapp/repository/InventoryRepository.class
 com/example/springapp/service/InventoryService.class
 com/example/springapp/model/Inventory.class
-com/example/springapp/repository/PurchaseOrderRepository.class
 com/example/springapp/controller/ProductController.class
+com/example/springapp/repository/PurchaseOrderRepository.class
 com/example/springapp/service/PurchaseOrderService.class
