@@ -1,9 +1,7 @@
 .App {
   text-align: center;
 }
-body{
-  background-color: #84A7A1;
-}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -37,21 +35,4 @@ body{
   to {
     transform: rotate(360deg);
   }
-}
-/*Shipment*/
-.float-container{
-  width:100%;
-  border: 20px;
- 
-  
-}
-.float-contain{
-  width: 20%;
-  float:right;
-  padding: 20px;
-}
-.float-location{
-  width: 50%;
-  float:left;
-  padding-right: 20px;
 }
