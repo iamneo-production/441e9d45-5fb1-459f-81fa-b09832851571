@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import NavbarComp from './NavbarComp';
 
 const SalesTracker = () => {
   const [sales, setSales] = useState([]);
@@ -38,9 +39,10 @@ const SalesTracker = () => {
   };
 
   return (
-    <div>
-      <h2>Sales Tracker</h2>
-      <h3>Sales</h3>
+    <>
+    <NavbarComp />
+    <div className='container'>
+      <div className='py-4'>
       <table className='table border shadow'>
         <thead>
           <tr>
@@ -63,30 +65,37 @@ const SalesTracker = () => {
           ))}
         </tbody>
       </table>
-      <h3>Revenue: ${revenue}</h3>
-      <div className='container'>
-        <div className='row'>
-          <div className='col-md-8 offset-md-3 border rounded p-4 mt-2 shadow'>
-      <h3 className='text-center m-4'>Generate Report</h3>
-      <form onSubmit={generateReport}>
-      <div className='mb-3'>
-        <label htmlFor='Product ID' className='form-label'>
+      <h3 className='text-white'>Revenue: ${revenue}</h3>
+      
+    </div>
+    </div>
+
+    <div className='container w-50 justify-content-center'>
+      <div className='row'>
+        
+        <div className='container justify-content-center bg-dark col-md-8 border rounded p-4 mt-2 text-white'>
+        
+          <h3 className='text-center m-4'>Generate Report</h3>
+          <form onSubmit={generateReport}>
+          <div className='mb-3'>
+          <label htmlFor='Product ID' className='form-label'>
           Start Date
           </label>
           <input type="date" className='form-control' value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-        </div>
-        <div className='mb-3'>
-        <label htmlFor='Product ID' className='form-label'>
+          </div>
+          <div className='mb-3'>
+          <label htmlFor='Product ID' className='form-label'>
           End Date
           </label>
           <input type="date" className='form-control' value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-        </div>
-        <center><button type="submit" className='btn btn-outline-primary'>Generate Report</button></center>
+          </div>
+          <center><button type="submit" className='btn btn-primary'>Generate Report</button></center>
       </form>
       </div>
       </div>
-      </div>
     </div>
+    
+    </>
   );
 };
 
