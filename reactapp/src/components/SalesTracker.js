@@ -8,8 +8,6 @@ import NavbarComp from './NavbarComp';
 const SalesTracker = () => {
   const [sales, setSales] = useState([]);
   const [revenue, setRevenue] = useState(0);
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
 
   useEffect(() => {
     loadSales();
@@ -31,16 +29,7 @@ const SalesTracker = () => {
     setRevenue(totalRevenue);
   };
 
-  const generateReport = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.get(`/api/reports?start_date=${startDate}&end_date=${endDate}`);
-      // Process the report data or display it on the page
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  
 
   return (
     <>
@@ -107,30 +96,7 @@ const SalesTracker = () => {
     </div>
     </div>
 
-    <div className='container w-50 justify-content-center'>
-      <div className='row'>
-        
-        <div className='container justify-content-center bg-dark col-md-8 border rounded p-4 mt-2 text-white'>
-        
-          <h3 className='text-center m-4'>Generate Report</h3>
-          <form onSubmit={generateReport}>
-          <div className='mb-3'>
-          <label htmlFor='Product ID' className='form-label'>
-          Start Date
-          </label>
-          <input type="date" className='form-control' value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-          </div>
-          <div className='mb-3'>
-          <label htmlFor='Product ID' className='form-label'>
-          End Date
-          </label>
-          <input type="date" className='form-control' value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-          </div>
-          <center><button type="submit" className='btn btn-primary'>Generate Report</button></center>
-      </form>
-      </div>
-      </div>
-    </div>
+    
     
     </>
   );
