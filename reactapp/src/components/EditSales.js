@@ -10,12 +10,13 @@ export default function EditSales() {
 
   const [user, setUser] = useState({
     productid: "",
+    productname: "",
     quantity: "",
     price: "",
     timestamp: "",
   });
 
-  const { productid, quantity, price, timestamp } = user;
+  const { productid, productname, quantity, price, timestamp } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -55,6 +56,19 @@ export default function EditSales() {
                 placeholder="Enter your productid"
                 name="productid"
                 value={productid}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="Productname" className="form-label">
+                Product name
+              </label>
+              <input
+                type={"text"}
+                className="form-control"
+                placeholder="Enter product name"
+                name="productname"
+                value={productname}
                 onChange={(e) => onInputChange(e)}
               />
             </div>

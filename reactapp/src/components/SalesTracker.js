@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import NavbarComp from './NavbarComp';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye,faPencil,faTrashCan } from '@fortawesome/free-solid-svg-icons';
+
 
 
 const SalesTracker = () => {
@@ -62,6 +61,7 @@ const SalesTracker = () => {
            <tr>
             <th>ID</th>
             <th>Product ID</th>
+            <th>Product Name</th>
             <th>Quantity</th>
             <th>Price</th>
             <th>Timestamp</th>
@@ -73,36 +73,29 @@ const SalesTracker = () => {
             <tr key={sale.id}>
               <td>{sale.id}</td>
               <td>{sale.productid}</td>
+              <td>{sale.productname}</td>
               <td>{sale.quantity}</td>
               <td>{sale.price}</td>
               <td>{sale.timestamp}</td>
               <td>
                   <Link
-                    className="btn"
+                    className="btn btn-light"
                     to={`/viewsales/${sale.id}`}
-                  >
-                    
-                    <FontAwesomeIcon icon={faEye}/>
-                    
-                   
+                  >  
+                  View 
                   </Link>
                   <Link
-                    className="btn"
+                    className="btn btn-light"
                     to={`/editsales/${sale.id}`}
-                  >
-                    <span style={{ color: "#fcc838" }}>
-                    <FontAwesomeIcon icon={faPencil} />
-                    </span>
                     
+                  >
+                    Edit  
                   </Link>
                   <button
-                    className="btn"
+                    className="btn btn-light"
                     onClick={() => deleteSales(sale.id)}
                   >
-                    <span style={{ color: "#f54040" }}>
-                    <FontAwesomeIcon icon={faTrashCan} />
-                      </span>
-                    
+                    Delete
                   </button>
                 </td>
             </tr>

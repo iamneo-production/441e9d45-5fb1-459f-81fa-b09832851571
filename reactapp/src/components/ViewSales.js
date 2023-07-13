@@ -6,6 +6,7 @@ import NavbarComp from './NavbarComp';
 export default function ViewSales() {
   const [user, setUser] = useState({
     productid: "",
+    productname: "",
     quantity: "",
     price: "",
     timestamp: "",
@@ -37,6 +38,10 @@ export default function ViewSales() {
                 <li className="list-group-item">
                   <b>Product_ID: </b>
                   {user.productid}
+                </li>
+                <li className="list-group-item">
+                  <b>Product Name: </b>
+                  {user.productname}
                 </li>
                 <li className="list-group-item">
                   <b>Quantity: </b>

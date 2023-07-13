@@ -25,6 +25,7 @@ public class Sales {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private Long productid;
+	private String productname;
 	private Long quantity;
 	private Double price;
 	private Date timestamp;
