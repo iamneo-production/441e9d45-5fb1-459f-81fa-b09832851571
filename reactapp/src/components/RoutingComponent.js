@@ -3,6 +3,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import ProductList from './ProductList';
 import InventoryDashboard from './InventoryDashboard';
 import SalesTracker from './SalesTracker';
+import AddSales from './AddSales';
+import ViewSales from './ViewSales';
+import EditSales from './EditSales';
 import LocationManager from './LocationManager';
 import BarcodeScannerIntegration from './BarcodeScannerIntegration';
 import Reports from './Reports';
@@ -51,6 +54,9 @@ function RoutingComponent() {
            <Route path="/product" element={<ProductList />} />
            <Route path="/dashboard" element={<InventoryDashboard />} />
            <Route path="/sales" element={<SalesTracker />} />
+           <Route path="/addsales" element={<AddSales />} />
+           <Route path="/editsales/:id" element={<EditSales />} />
+           <Route path="/viewsales/:id" element={<ViewSales />} />
            <Route path="/locations" element={<LocationManager />} />
            <Route path="/scanner" element={<BarcodeScannerIntegration />} />
            <Route path="/reports" element={<Reports />} />

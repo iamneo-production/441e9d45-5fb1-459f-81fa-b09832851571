@@ -1,20 +1,21 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import NavbarComp from "./NavbarComp";
+import NavbarComp from './NavbarComp';
 
-export default function AddShipment() {
+export default function AddSales() {
   let navigate = useNavigate();
 
   const [user, setUser] = useState({
     productid: "",
+    productname: "",
     quantity: "",
-    location: "",
-    timestamp: new Date().toISOString(),
+    price: "",
+    timestamp: "",
     
   });
 
-  const { productid, quantity, location, timestamp } = user;
+  const { productid, productname, quantity, price, timestamp } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -22,18 +23,17 @@ export default function AddShipment() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("https://8080-aabbafaeecebdfaddeebcaddaceaeaadbdbabf.project.examly.io/api/post", user);
-    navigate("/shipment");
+    await axios.post("https://8080-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io/sales/post", user);
+    navigate("/sales");
   };
 
   return (
-    
-    <>    
-    <div className='container w-50 justify-content-center'>
-
-    <div className='row'>
-      <div className='container justify-content-center bg-dark col-md-8 border rounded p-4 mt-2 text-white'>
-        <h2 className='text-center m-4'>Shipment Details Entry</h2>
+    <>
+    <NavbarComp />
+    <div className="container w-50 p-4 justify-content-center">
+      <div className="row">
+        <div className="container justify-content-center bg-dark col-md-8 border rounded p-4 mt-2 text-white">
+          <h2 className="text-center m-4">Sales Details Entry</h2>
 
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3">
@@ -46,6 +46,19 @@ export default function AddShipment() {
                 placeholder="Enter your productid"
                 name="productid"
                 value={productid}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="Productname" className="form-label">
+                Product Name
+              </label>
+              <input
+                type={"text"}
+                className="form-control"
+                placeholder="Enter product name"
+                name="productname"
+                value={productname}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -63,21 +76,21 @@ export default function AddShipment() {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="Location" className="form-label">
-                Location
+              <label htmlFor="Price" className="form-label">
+                Price
               </label>
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Enter your location"
-                name="location"
-                value={location}
+                placeholder="Enter Product Price"
+                name="price"
+                value={price}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
             <div className="mb-3">
               <label htmlFor="Timestamp" className="form-label">
-                Timestamp
+                Date
               </label>
               <input
                 type={"text"}
@@ -88,16 +101,15 @@ export default function AddShipment() {
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-            <div>
+            
             <center>
-            <button type="submit" className="btn btn-primary" style={{margin:"10px"}}>
-              Place Order
+            <button type="submit" className="btn btn-outline-success">
+              Place Sale
             </button>
-            <Link className="btn btn-danger" to="/shipment">
+            <Link className="btn btn-outline-danger mx-2" to="/sales">
               Cancel
             </Link>
             </center>
-            </div>
           </form>
         </div>
       </div>

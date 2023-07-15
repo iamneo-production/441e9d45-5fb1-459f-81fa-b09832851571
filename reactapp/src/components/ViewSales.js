@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useEffect,useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import NavbarComp from './NavbarComp';
 
-export default function ViewShipment() {
+export default function ViewSales() {
   const [user, setUser] = useState({
     productid: "",
+    productname: "",
     quantity: "",
-    location: "",
+    price: "",
     timestamp: "",
   });
 
@@ -17,31 +19,37 @@ export default function ViewShipment() {
   }, []);
 
   const loadUser = async () => {
-    const result = await axios.get(`https://8080-aabbafaeecebdfaddeebcaddaceaeaadbdbabf.project.examly.io/api/get/${id}`);
+    const result = await axios.get(`https://8080-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io/sales/get/${id}`);
     setUser(result.data);
   };
 
   return (
-    <div className='container w-50 justify-content-center'>
-    <div className='row'>
-      <div className='container justify-content-center bg-dark col-md-8 border rounded p-4 mt-2 text-white'>
-        <h2 className='text-center m-4'>Shipment Details</h2>
+    <>
+    <NavbarComp />
+    <div className="container w-50 p-4 justify-content-center">
+      <div className="row">
+        <div className="container justify-content-center bg-dark col-md-8 border rounded p-4 mt-2 text-white">
+          <h2 className="text-center m-4">Sales Details</h2>
 
           <div className="card">
             <div className="card-header">
-              Shipment Details: {user.id}
+              Sales Details: {user.id}
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
                   <b>Product_ID: </b>
                   {user.productid}
                 </li>
                 <li className="list-group-item">
+                  <b>Product Name: </b>
+                  {user.productname}
+                </li>
+                <li className="list-group-item">
                   <b>Quantity: </b>
                   {user.quantity}
                 </li>
                 <li className="list-group-item">
-                  <b>Location: </b>
-                  {user.location}
+                  <b>Price: </b>
+                  {user.price}
                 </li>
                 <li className="list-group-item">
                   <b>Date: </b>
@@ -51,14 +59,13 @@ export default function ViewShipment() {
             </div>
           </div>
           <center>
-          <div style={{padding:"20px"}}>
-          <Link className="btn btn-primary" to={"/shipment"}>
-            Back to Shipment
+          <Link className="btn btn-secondary mb-2 m-4" to={"/sales"}>
+            Back to Sales
           </Link>
-          </div>
           </center>
         </div>
       </div>
     </div>
+    </>
   );
 }
