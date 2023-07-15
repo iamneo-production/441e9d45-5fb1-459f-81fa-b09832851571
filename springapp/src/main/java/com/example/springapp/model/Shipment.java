@@ -28,3 +28,5 @@ public class Shipment {
 	private String timestamp;
 
 }
+
+}
