@@ -53,4 +53,10 @@ public class ProductService {
             return false;
         }
     }
+    public Product getProductByBarcode(String barcode) {
+        if (barcode == null || barcode.isEmpty()) {
+            return null; // No barcode provided
+        }
+        return productRepository.findByBarcode(barcode);
+    }
 }

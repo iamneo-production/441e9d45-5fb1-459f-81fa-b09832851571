@@ -9,6 +9,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // Custom query to find a product by id
     Product findProductById(Long id);
 
+    Product findByBarcode(String barcode);
+    
     // Custom query to delete a product by id
     void deleteProductById(Long id);
 }

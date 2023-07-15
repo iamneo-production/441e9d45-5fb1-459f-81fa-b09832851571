@@ -70,4 +70,13 @@ public class ProductController {
             return ResponseEntity.notFound().build();
         }
     }
+    @GetMapping("/barcode/{barcode}")
+    public ResponseEntity<Product> getProductByBarcode(@PathVariable("barcode") String barcode) {
+        Product product = productService.getProductByBarcode(barcode);
+        if (product != null) {
+            return ResponseEntity.ok(product);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 }
