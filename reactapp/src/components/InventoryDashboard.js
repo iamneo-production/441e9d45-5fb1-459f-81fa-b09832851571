@@ -27,7 +27,7 @@ const InventoryDashboard = () => {
 
   const fetchInventory = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/inventory');
+      const response = await axios.get('https://8080-ebffcebdfaddeebcaddaceaeaadbdbabf.project.examly.io/inventory');
       setInventory(response.data);
     } catch (error) {
       console.error(error);
@@ -46,7 +46,7 @@ const InventoryDashboard = () => {
     };
 
     try {
-      await axios.post('http://localhost:8080/inventory', newInventory);
+      await axios.post('https://8080-ebffcebdfaddeebcaddaceaeaadbdbabf.project.examly.io/inventory', newInventory);
       fetchInventory();
       resetForm();
     } catch (error) {
@@ -56,7 +56,7 @@ const InventoryDashboard = () => {
 
   const handleDelete = async (inventoryId) => {
     try {
-      await axios.delete(`http://localhost:8080/inventory/${inventoryId}`);
+      await axios.delete(`https://8080-ebffcebdfaddeebcaddaceaeaadbdbabf.project.examly.io/inventory/${inventoryId}`);
       fetchInventory();
     } catch (error) {
       console.error('Error deleting product:', error);
@@ -88,7 +88,7 @@ const InventoryDashboard = () => {
     };
 
     try {
-      await axios.put(`http://localhost:8080/inventory/${editInventoryID}`, updatedInventory);
+      await axios.put(`https://8080-ebffcebdfaddeebcaddaceaeaadbdbabf.project.examly.io/inventory/${editInventoryID}`, updatedInventory);
       fetchInventory();
       resetForm();
     } catch (error) {

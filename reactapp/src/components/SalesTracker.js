@@ -14,13 +14,13 @@ const SalesTracker = () => {
   }, []);
 
   const loadSales = async () => {
-      const response = await axios.get('https://8080-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io/sales/getall');
+      const response = await axios.get('https://8080-ebffcebdfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/getall');
       setSales(response.data);
       calculateRevenue(response.data);
   };
 
   const deleteSales = async (id) => {
-    await axios.delete(`https://8080-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io/sales/delete/${id}`);
+    await axios.delete(`https://8080-ebffcebdfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/delete/${id}`);
     loadSales();
   };
 
