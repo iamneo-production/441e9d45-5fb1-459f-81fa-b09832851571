@@ -13,12 +13,12 @@ export default function ShipmentHome() {
   }, []);
 
   const fetchShipments = async () => {
-    const result = await axios.get("https://8080-aedecebfbdffcfaddeebcaddaceaeaadbdbabf.project.examly.io/api/getall");
+    const result = await axios.get("https://8080-aedecebfbdffcfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/getall");
     setUsers(result.data);
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`https://8080-aedecebfbdffcfaddeebcaddaceaeaadbdbabf.project.examly.io/api/delete/${id}`);
+    await axios.delete(`https://8080-aedecebfbdffcfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/delete/${id}`);
     fetchShipments();
   };
 

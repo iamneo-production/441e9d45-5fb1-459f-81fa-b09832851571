@@ -31,7 +31,7 @@ export default function EditShipment() {
   };
 
   const loadUser = async () => {
-    const result = await axios.get(`https://8080-aedecebfbdffcfaddeebcaddaceaeaadbdbabf.project.examly.io/api/get/${id}`);
+    const result = await axios.get(`https://8080-aedecebfbdffcfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/get/${id}`);
     setUser(result.data);
   };
 

@@ -11,7 +11,7 @@ export default function AddSales() {
     productname: "",
     quantity: "",
     price: "",
-    timestamp: "",
+    timestamp: new Date().toISOString(),
     
   });
 

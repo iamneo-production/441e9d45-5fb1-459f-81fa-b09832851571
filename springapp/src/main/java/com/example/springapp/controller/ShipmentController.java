@@ -18,8 +18,8 @@ import com.example.springapp.model.Shipment;
 import com.example.springapp.service.ShipmentServiceInterface;
 
 @RestController
-@CrossOrigin("https://8081-aabbafaeecebdfaddeebcaddaceaeaadbdbabf.project.examly.io")
-@RequestMapping("/api")
+@CrossOrigin
+@RequestMapping("/shipment")
 public class ShipmentController {
 
 	@Autowired

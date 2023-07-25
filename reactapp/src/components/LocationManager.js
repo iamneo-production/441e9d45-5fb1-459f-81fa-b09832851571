@@ -14,7 +14,7 @@ const LocationManager = () => {
     fetchLocations();
   }, []);
 
-  const API_BASE_URL = 'https://8080-cddceefbecadffaddeebcaddaceaeaadbdbabf.project.examly.io/';
+  const API_BASE_URL = 'https://8080-aedecebfbdffcfaddeebcaddaceaeaadbdbabf.project.examly.io/';
 
   const fetchLocations = async () => {
     try {

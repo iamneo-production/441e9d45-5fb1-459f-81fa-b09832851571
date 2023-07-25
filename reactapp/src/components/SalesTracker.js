@@ -23,7 +23,6 @@ const SalesTracker = () => {
     await axios.delete(`https://8080-aedecebfbdffcfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/delete/${id}`);
     loadSales();
   };
-
   const calculateRevenue = (salesData) => {
     const totalRevenue = salesData.reduce((total, sale) => total + sale.quantity * sale.price, 0);
     setRevenue(totalRevenue);
