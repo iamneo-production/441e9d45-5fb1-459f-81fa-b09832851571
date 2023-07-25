@@ -1,82 +1,257 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../App.css'
 import NavbarComp from './NavbarComp';
+
 const LocationManager = () => {
   const [locations, setLocations] = useState([]);
-  const [newLocation, setNewLocation] = useState('');
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [contact, setContact] = useState('');
+  const [editingId, setEditingId] = useState(null);
+  const [showForm, setShowForm] = useState(false); // State variable to control form visibility
 
   useEffect(() => {
     fetchLocations();
   }, []);
 
+  const API_BASE_URL = 'https://8080-cddceefbecadffaddeebcaddaceaeaadbdbabf.project.examly.io/';
+
   const fetchLocations = async () => {
     try {
-      const response = await axios.get('/api/locations');
+      const response = await axios.get(`${API_BASE_URL}/locations`);
       setLocations(response.data);
     } catch (error) {
-      console.error(error);
+      console.log('Error:', error);
     }
   };
 
-  const addLocation = async () => {
-    if (newLocation.trim() === '') return;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const locationData = {
+      name: name,
+      address: address,
+      contact: contact
+    };
+
     try {
-      const response = await axios.post('/api/locations', { name: newLocation });
-      setLocations([...locations, response.data]);
-      setNewLocation('');
+      const response = await axios.post(`${API_BASE_URL}/locations`, locationData);
+
+      if (response.status === 201) {
+        // Location created successfully, fetch the updated location list
+        fetchLocations();
+        // Reset form fields
+        setName('');
+        setAddress('');
+        setContact('');
+        // Hide the form after submission
+        setShowForm(false);
+      } else {
+        console.log('Error:', response.status);
+      }
     } catch (error) {
-      console.error(error);
+      console.log('Error:', error);
     }
   };
 
-  const deleteLocation = async (locationId) => {
+  const handleDelete = async (id) => {
     try {
-      await axios.delete(`/api/locations/${locationId}`);
-      setLocations(locations.filter((location) => location.id !== locationId));
+      const response = await axios.delete(`${API_BASE_URL}/locations/${id}`);
+
+      if (response.status === 204) {
+        // Location deleted successfully, fetch the updated location list
+        fetchLocations();
+      } else {
+        console.log('Error:', response.status);
+      }
     } catch (error) {
-      console.error(error);
+      console.log('Error:', error);
     }
+  };
+
+  const handleEdit = (id) => {
+    setEditingId(id);
+  };
+
+  const handleUpdate = async (id) => {
+    const editedLocation = locations.find((location) => location.id === id);
+
+    const locationData = {
+      name: editedLocation.name,
+      address: editedLocation.address,
+      contact: editedLocation.contact
+    };
+
+    try {
+      const response = await axios.put(`${API_BASE_URL}/locations/${id}`, locationData);
+
+      if (response.status === 200) {
+        // Location updated successfully, fetch the updated location list
+        fetchLocations();
+        // Clear the editing state
+        setEditingId(null);
+      } else {
+        console.log('Error:', response.status);
+      }
+    } catch (error) {
+      console.log('Error:', error);
+    }
+  };
+
+  const handleInputChange = (e, id) => {
+    const { name, value } = e.target;
+
+    setLocations((prevLocations) =>
+      prevLocations.map((location) =>
+        location.id === id ? { ...location, [name]: value } : location
+      )
+    );
+  };
+
+  const handleCancel = () => {
+    setShowForm(false);
+    setName('');
+    setAddress('');
+    setContact('');
   };
 
   return (
     <>
-    <NavbarComp />
-      <div className="d-flex align-items-center justify-content-center vh-100 width:60%;">
-        <div className="container bg-dark p-3 border rounded">
-          <h2 className="mt-4 text-white">Add Location</h2>
-          <div className="input-group mb-3">
+      <NavbarComp />
 
-            <ul>
-              {locations.map((location) => (
-                <li key={location.id}>
-                  {location.name}{' '}
-                  <button onClick={() => deleteLocation(location.id)}>Delete</button>
-                </li>
-              ))}
-            </ul>
-            <div className="float-container">
-            <form onSubmit={addLocation}>
-              <div className="float-location">
-              <input
-                type="text"
-                placeholder="Add Location"
-                className='form-control'
-                value={newLocation}
-                onChange={(e) => setNewLocation(e.target.value)}
-              />
-              </div>
+      {!showForm && (
+        <div className='container'>
+          <div className='py-4'>
+            <div className='mb-3 d-flex justify-content-end'>
+              <button className='btn btn-primary' onClick={() => setShowForm(true)}>Add Location</button>
+            </div>
+            <table className='table border shadow'>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Contact</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {locations.map((location) => (
+                  <tr key={location.id}>
+                    <td>
+                      {editingId === location.id ? (
+                        <input
+                          type='text'
+                          name='name'
+                          value={location.name}
+                          onChange={(e) => handleInputChange(e, location.id)}
+                        />
+                      ) : (
+                        location.name
+                      )}
+                    </td>
+                    <td>
+                      {editingId === location.id ? (
+                        <input
+                          type='text'
+                          name='address'
+                          value={location.address}
+                          onChange={(e) => handleInputChange(e, location.id)}
+                        />
+                      ) : (
+                        location.address
+                      )}
+                    </td>
+                    <td>
+                      {editingId === location.id ? (
+                        <input
+                          type='text'
+                          name='contact'
+                          value={location.contact}
+                          onChange={(e) => handleInputChange(e, location.id)}
+                        />
+                      ) : (
+                        location.contact
+                      )}
+                    </td>
+                    <td>
+                      {editingId === location.id ? (
+                        <div>
+                          <button className='btn btn-primary' onClick={() => handleUpdate(location.id)}>Save</button>
+                          <button className='btn btn-secondary' onClick={() => setEditingId(null)}>Cancel</button>
+                        </div>
+                      ) : (
+                        <div>
+                          <button className='btn btn-info' onClick={() => handleEdit(location.id)}>Edit</button>
+                          <button className='btn btn-danger' onClick={() => handleDelete(location.id)}>Delete</button>
+                        </div>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
 
-            <div className="float-location">
-            <div className="input-group-append">
-              <button className="btn btn-primary" type="button">Add Location</button>
-            </div>
-            </div>
-            </form>
+      {showForm && (
+        <div className='container w-50 justify-content-center'>
+          <div className='row'>
+            <div className='container justify-content-center bg-dark col-md-8 border rounded p-4 mt-2 text-white'>
+              <h2 className='text-center m-4'>Add Location</h2>
+              <form onSubmit={handleSubmit}>
+                <div className='mb-3'>
+                  <label className='form-label'>
+                    Name:
+                    <input
+                      className='form-control'
+                      type='text'
+                      name='name'
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </label>
+                </div>
+                <br />
+                <div className='mb-3'>
+                  <label className='form-label'>
+                    Address:
+                    <input
+                      className='form-control'
+                      type='text'
+                      name='address'
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                    />
+                  </label>
+                </div>
+                <br />
+                <div className='mb-3'>
+                  <label className='form-label'>
+                    Contact:
+                    <input
+                      className='form-control'
+                      type='text'
+                      name='contact'
+                      value={contact}
+                      onChange={(e) => setContact(e.target.value)}
+                    />
+                  </label>
+                </div>
+                <br />
+                <div className='d-flex justify-content-between'>
+                  <button type='submit' className='btn btn-primary'>
+                    Submit
+                  </button>
+                  <button type='button' className='btn btn-secondary' onClick={handleCancel}>
+                    Cancel
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
