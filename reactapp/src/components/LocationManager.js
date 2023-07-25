@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NavbarComp from './NavbarComp';
+import { FaEdit, FaTrash } from 'react-icons/fa';
+import { GrFormView } from "react-icons/gr";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
 const LocationManager = () => {
   const [locations, setLocations] = useState([]);
@@ -8,13 +12,36 @@ const LocationManager = () => {
   const [address, setAddress] = useState('');
   const [contact, setContact] = useState('');
   const [editingId, setEditingId] = useState(null);
-  const [showForm, setShowForm] = useState(false); // State variable to control form visibility
+  const [showForm, setShowForm] = useState(false); 
+  const [query,setQuery]=useState('');
 
   useEffect(() => {
     fetchLocations();
   }, []);
 
-  const API_BASE_URL = 'https://8080-aedecebfbdffcfaddeebcaddaceaeaadbdbabf.project.examly.io/';
+  const API_BASE_URL = 'https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/';
+
+  const [sortBy, setSortBy] = useState('id'); 
+
+  const handleSortBy = (option) => {
+    setSortBy(option);
+    const sortedOrders = [...locations]; 
+
+    switch (option) {
+      case 'name':
+        sortedOrders.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case 'address':
+        sortedOrders.sort((a, b) => a.address.localeCompare(b.address));
+        break;
+      case 'contact':
+        sortedOrders.sort((a, b) => a.contact - b.contact);
+        break;  
+      default:
+        break;
+    }
+    setLocations(sortedOrders); 
+  };
 
   const fetchLocations = async () => {
     try {
@@ -123,6 +150,22 @@ const LocationManager = () => {
         <div className='container'>
           <div className='py-4'>
             <div className='mb-3 d-flex justify-content-end'>
+            <input
+                  type='text'
+                  className='search'
+                  placeholder='Search order'
+                  onChange={(event)=>setQuery(event.target.value.toLowerCase())}
+                  ></input>
+          <div className='dropdown'>
+                <button className='btn btn-secondary dropdown-toggle' type='button' id='sortByButton' data-bs-toggle='dropdown' aria-expanded='false'>
+                  Sort By
+                </button>
+                <ul className='dropdown-menu' aria-labelledby='sortByButton'>
+                  <li><button className='dropdown-item' onClick={() => handleSortBy('name')}>Name</button></li>
+                  <li><button className='dropdown-item' onClick={() => handleSortBy('address')}>Address</button></li>
+                  <li><button className='dropdown-item' onClick={() => handleSortBy('contact')}>Contact</button></li>
+                </ul>
+              </div>
               <button className='btn btn-primary' onClick={() => setShowForm(true)}>Add Location</button>
             </div>
             <table className='table border shadow'>
@@ -135,7 +178,12 @@ const LocationManager = () => {
                 </tr>
               </thead>
               <tbody>
-                {locations.map((location) => (
+              {locations.filter(
+                  (order)=>order.name.toLowerCase().includes(query) ||
+                  order.address.toLowerCase().includes(query) ||
+                  order.contact.toString().includes(query) 
+                  ).map((location) => {
+                  return (
                   <tr key={location.id}>
                     <td>
                       {editingId === location.id ? (
@@ -181,13 +229,13 @@ const LocationManager = () => {
                         </div>
                       ) : (
                         <div>
-                          <button className='btn btn-info' onClick={() => handleEdit(location.id)}>Edit</button>
-                          <button className='btn btn-danger' onClick={() => handleDelete(location.id)}>Delete</button>
+                          <button className='btn btn-info' onClick={() => handleEdit(location.id)}><FaEdit/></button>
+                          <button className='btn btn-danger' onClick={() => handleDelete(location.id)}><FaTrash/></button>
                         </div>
                       )}
                     </td>
                   </tr>
-                ))}
+                )})}
               </tbody>
             </table>
           </div>

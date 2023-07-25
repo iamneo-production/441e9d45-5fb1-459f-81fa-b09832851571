@@ -10,15 +10,39 @@ function Reports() {
 
     const[quantity,setQuantity]=useState(0); 
     const[salesData,setSalesData]= useState([]);
+    const [query,setQuery]=useState('');
+
     useEffect(()=>{
         fetchInventoryQuantity();
         fetchSalesData();
     },[])
 
+    const [sortBy, setSortBy] = useState('id'); 
+
+  const handleSortBy = (option) => {
+    setSortBy(option);
+    const sortedOrders = [...salesData]; 
+
+    switch (option) {
+      case 'productname':
+        sortedOrders.sort((a, b) => a.productname.localeCompare(b.productname));
+        break;
+      case 'price':
+        sortedOrders.sort((a, b) => a.price - b.price);
+        break;
+      case 'quantity':
+        sortedOrders.sort((a, b) => a.quantity - b.quantity);
+        break;  
+      default:
+        break;
+    }
+    setSalesData(sortedOrders); 
+  };
+
 
     const fetchInventoryQuantity = async () => {
         try {
-          const response = await axios.get('https://8080-aedecebfbdffcfaddeebcaddaceaeaadbdbabf.project.examly.io/inventory/total-quantity');
+          const response = await axios.get('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/inventory/total-quantity');
           console.log(quantity);
           setQuantity(response.data);
         } catch (error) {
@@ -27,7 +51,7 @@ function Reports() {
       };
       const fetchSalesData = async () => {
         try {
-          const response = await axios.get('https://8080-aedecebfbdffcfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/getall');
+          const response = await axios.get('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/getall');
           setSalesData(response.data);
           console.log(response.data);
         } catch (error) {
@@ -49,6 +73,24 @@ function Reports() {
       }}>
     <h1> <MdRecentActors /> Recent Sales Orders:</h1>
     </div>
+    <div className='mb-3 d-flex justify-content-end'>
+            <input
+                  type='text'
+                  className='search'
+                  placeholder='Search order'
+                  onChange={(event)=>setQuery(event.target.value.toLowerCase())}
+                  ></input>
+          <div className='dropdown'>
+                <button className='btn btn-secondary dropdown-toggle' type='button' id='sortByButton' data-bs-toggle='dropdown' aria-expanded='false'>
+                  Sort By
+                </button>
+                <ul className='dropdown-menu' aria-labelledby='sortByButton'>
+                  <li><button className='dropdown-item' onClick={() => handleSortBy('productname')}>Product Name</button></li>
+                  <li><button className='dropdown-item' onClick={() => handleSortBy('quantity')}>Quantity</button></li>
+                  <li><button className='dropdown-item' onClick={() => handleSortBy('price')}>Price</button></li>
+                </ul>
+              </div>
+              </div>
     <table style={{ 
       //  width: 700,
        //  position:'absolute',
@@ -64,12 +106,16 @@ function Reports() {
         </tr>
       </thead>
       <tbody>
-        {salesData.map((sale,index)=>{
+        {salesData.filter(
+                  (order)=>order.productname.toLowerCase().includes(query) ||
+                  order.quantity.toString().includes(query) ||
+                  order.price.toString().includes(query) 
+                  ).map((sale, index) => {
           return(index>(value-4) &&( 
             <tr>
             <td>{sale.productname}</td>
-            <td>{sale.price}</td>
             <td>{sale.quantity}</td>
+            <td>{sale.price}</td>
             </tr>
           ))
         })}
@@ -81,6 +127,7 @@ function Reports() {
     </div>
     </div>
     </div>
+    
     </>
 )}
     
