@@ -1,25 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Modal } from 'react-bootstrap';
+import NavbarComp from './NavbarComp';
+import axios from 'axios';
 
 const  BarcodeScannerIntegeration = () => {
-  const [productId, setProductId] = useState('');
+  const [barcode, setBarcode] = useState('');
   const [productDetails, setProductDetails] = useState(null);
   const [errorModalOpen, setErrorModalOpen] = useState(false);
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
+      // Function to fetch data
+      const fetchData = async (barcode) => {
+        try {
+          const response = await axios.get(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/product/barcode/${barcode}`);
+          setProductDetails(response.data);
+        } catch (error) {
+          console.error('Error:', error);
+          setProductDetails(false)
+        }
+      };
+  
+      // Call the fetch data function
+     
 
   const handleButtonClick = () => {
-    const products = [
-      { id: '123456', name: 'chair', location: 'chennai' },
-      { id: '234567', name: 'samsung', location: 'bangalore' },
-      { id: '345678', name: 'pen', location: 'coimbatore' },
-      // Add more products as needed
-    ];
-
-    const product = products.find((p) => p.id === productId);
-
-    if (product) {
-      setProductDetails(product);
+    if (productDetails) {
       setDetailsModalOpen(true);
     } else {
       setErrorModalOpen(true);
@@ -36,7 +41,7 @@ const  BarcodeScannerIntegeration = () => {
   };
 
   const handleCleanup = () => {
-    setProductId('');
+    setBarcode('');
   };
 
   useEffect(() => {
@@ -45,7 +50,8 @@ const  BarcodeScannerIntegeration = () => {
 
   return (
     <div>
-      <center><h1 className="text-center">Barcode Scanner</h1></center>
+      <NavbarComp />
+      <center><h1 className="text-align:center">Barcode Scanner</h1></center>
 
       <div className="container d-flex align-items-center justify-content-center vh-100">
         <div className="col-6">
@@ -53,8 +59,8 @@ const  BarcodeScannerIntegeration = () => {
             type="text"
             className="form-control mb-3"
             placeholder="Enter Barcode ID"
-            value={productId}
-            onChange={(e) => setProductId(e.target.value)}
+            // value={barcode}
+            onChange={(e) =>fetchData(e.target.value)}
           />
           <center>
             <button
@@ -66,18 +72,20 @@ const  BarcodeScannerIntegeration = () => {
           </center>
           <Modal show={detailsModalOpen} onHide={handleCloseDetailsModal} centered>
             <Modal.Header closeButton>
-              <Modal.Title>Product Details</Modal.Title>
+            <Modal.Title class="text-secondary">  
+                    <strong >Product Details</strong>
+            </Modal.Title>
             </Modal.Header>
             <Modal.Body>
               {productDetails && (
                 <div>
-                  <p>
+                  <p class="text-secondary">
                     <strong>ID:</strong> {productDetails.id}
                   </p>
-                  <p>
+                  <p class="text-secondary">
                     <strong>Name:</strong> {productDetails.name}
                   </p>
-                  <p>
+                  <p class="text-secondary">
                     <strong>Location:</strong> {productDetails.location}
                   </p>
                 </div>
@@ -92,10 +100,10 @@ const  BarcodeScannerIntegeration = () => {
 
           <Modal show={errorModalOpen} onHide={handleCloseErrorModal} centered>
             <Modal.Header closeButton>
-              <Modal.Title>Error</Modal.Title>
+              <Modal.Title class="text-black-50">ERROR</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-              The product ID you entered is incorrect. Please try again.
+            <Modal.Body   class="text-secondary">
+              The Barcode is incorrect
             </Modal.Body>
           </Modal>
         </div>

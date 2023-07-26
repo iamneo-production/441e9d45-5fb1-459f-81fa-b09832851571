@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavbarComp from './NavbarComp';
+import { FaEdit, FaTrash } from 'react-icons/fa';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
+
 
 function PurchaseOrder() {
   const [purchaseOrders, setPurchaseOrders] = useState([]);
@@ -9,16 +13,46 @@ function PurchaseOrder() {
   const [supplier, setSupplier] = useState('');
   const [timestamp, setTimestamp] = useState(new Date());
   const [showForm, setShowForm] = useState(false);
-  const [editOrderId, setEditOrderId] = useState(null); // Track the order ID being edited
+  const [editOrderId, setEditOrderId] = useState(null); 
+  const [query,setQuery]=useState('');
 
   useEffect(() => {
     fetchPurchaseOrders();
   }, []);
 
+  const [sortBy, setSortBy] = useState('id'); 
+
+  const handleSortBy = (option) => {
+    setSortBy(option);
+    const sortedOrders = [...purchaseOrders]; 
+
+    switch (option) {
+      case 'id':
+        sortedOrders.sort((a, b) => a.id - b.id);
+        break;
+      case 'productId':
+        sortedOrders.sort((a, b) => a.productId - b.productId);
+        break;
+      case 'quantity':
+        sortedOrders.sort((a, b) => a.quantity - b.quantity);
+        break;
+      case 'supplier':
+        sortedOrders.sort((a, b) => a.supplier.localeCompare(b.supplier));
+        break;
+      case 'timestamp':
+        sortedOrders.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+        break;
+      default:
+        break;
+    }
+    setPurchaseOrders(sortedOrders); 
+  };
+  
+
 
   const fetchPurchaseOrders = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/purchase-order');
+      const response = await axios.get('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/purchase-order');
       setPurchaseOrders(response.data);
     } catch (error) {
       console.error(error);
@@ -36,7 +70,7 @@ function PurchaseOrder() {
     };
 
     try {
-      await axios.post('http://localhost:8080/purchase-order', newPurchase);
+      await axios.post('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/purchase-order', newPurchase);
       fetchPurchaseOrders();
       resetForm();
     } catch (error) {
@@ -67,7 +101,7 @@ function PurchaseOrder() {
     };
 
     try {
-      await axios.put(`http://localhost:8080/purchase-order/${editOrderId}`, updatedPurchase);
+      await axios.put(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/purchase-order/${editOrderId}`, updatedPurchase);
       fetchPurchaseOrders();
       resetForm();
     } catch (error) {
@@ -77,7 +111,7 @@ function PurchaseOrder() {
 
   const handleDeleteProduct = async (orderId) => {
     try {
-      await axios.delete(`http://localhost:8080/purchase-order/${orderId}`);
+      await axios.delete(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/purchase-order/${orderId}`);
       fetchPurchaseOrders();
     } catch (error) {
       console.error(error);
@@ -100,9 +134,30 @@ function PurchaseOrder() {
         <div className='py-4'>
           <div className='mb-3 d-flex justify-content-end'>
             {!showForm ? (
-              <button type='button' className='btn btn-primary' onClick={() => setShowForm(true)}>
-                Add new purchase order
-              </button>
+              <>
+              <input
+                  type='text'
+                  className='search'
+                  placeholder='Search order'
+                  onChange={(event)=>setQuery(event.target.value.toLowerCase())}
+                  ></input>
+                <div className='dropdown'>
+                <button className='btn btn-secondary dropdown-toggle' type='button' id='sortByButton' data-bs-toggle='dropdown' aria-expanded='false'>
+                  Sort By
+                </button>
+                <ul className='dropdown-menu' aria-labelledby='sortByButton'>
+                  <li><button className='dropdown-item' onClick={() => handleSortBy('id')}>ID</button></li>
+                  <li><button className='dropdown-item' onClick={() => handleSortBy('productId')}>Product ID</button></li>
+                  <li><button className='dropdown-item' onClick={() => handleSortBy('quantity')}>Quantity</button></li>
+                  <li><button className='dropdown-item' onClick={() => handleSortBy('supplier')}>Supplier</button></li>
+                  <li><button className='dropdown-item' onClick={() => handleSortBy('timestamp')}>Timestamp</button></li>
+                </ul>
+              </div>
+                
+                <button type='button' className='btn btn-primary' onClick={() => setShowForm(true)}>
+                  Add new purchase order
+                </button>
+              </>
             ) : (
               <button type='button' className='btn btn-primary' onClick={resetForm}>
                 Close form
@@ -122,7 +177,15 @@ function PurchaseOrder() {
                 </tr>
               </thead>
               <tbody>
-                {purchaseOrders.map((order) => (
+                {purchaseOrders.filter(
+                  (order)=>order.id.toString().includes(query) ||
+                  order.productId.toString().includes(query) ||
+                  order.quantity.toString().includes(query) ||
+                  order.supplier.toLowerCase().includes(query) ||
+                  order.timestamp.toLowerCase().includes(query)
+                  ).map((order) => {
+                  return (
+                      
                   <tr key={order.id}>
                     <td>{order.id}</td>
                     <td>{order.productId}</td>
@@ -130,15 +193,15 @@ function PurchaseOrder() {
                     <td>{order.supplier}</td>
                     <td>{order.timestamp}</td>
                     <td>
-                        <button onClick={() => handleEditProduct(order.id)} style={{ backgroundColor: 'green' }}>
-                          Edit
+                        <button onClick={() => handleEditProduct(order.id)} title='Edit'>
+                          <FaEdit/>
                         </button>{' '}
-                        <button onClick={() => handleDeleteProduct(order.id)} style={{ backgroundColor: 'red' }}>
-                          Delete
+                        <button onClick={() => handleDeleteProduct(order.id)} title='Delete'>
+                          <FaTrash/>
                         </button>
                     </td>
                   </tr>
-                ))}
+                )})}
               </tbody>
             </table>
           )}

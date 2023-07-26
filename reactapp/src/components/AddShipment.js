@@ -1,19 +1,20 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import NavbarComp from "./NavbarComp";
 
 export default function AddShipment() {
   let navigate = useNavigate();
 
   const [user, setUser] = useState({
-    productid: "",
+    productId: "",
     quantity: "",
     location: "",
     timestamp: new Date().toISOString(),
     
   });
 
-  const { productid, quantity, location, timestamp } = user;
+  const { productId, quantity, location, timestamp } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -21,12 +22,15 @@ export default function AddShipment() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8081/api/post", user);
+    await axios.post("https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/post", user);
     navigate("/shipment");
   };
 
   return (
+    
+    <>    
     <div className='container w-50 justify-content-center'>
+
     <div className='row'>
       <div className='container justify-content-center bg-dark col-md-8 border rounded p-4 mt-2 text-white'>
         <h2 className='text-center m-4'>Shipment Details Entry</h2>
@@ -40,8 +44,8 @@ export default function AddShipment() {
                 type={"text"}
                 className="form-control"
                 placeholder="Enter your productid"
-                name="productid"
-                value={productid}
+                name="productId"
+                value={productId}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -98,5 +102,6 @@ export default function AddShipment() {
         </div>
       </div>
     </div>
+    </>
   );
 }
