@@ -1,6 +1,7 @@
 package com.example.springapp.service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,7 @@ public class SalesService implements SalesServiceInterface {
 
 	@Override
 	public Sales addSales(Sales sales) {
-		return repository.save(sales);
-
+    	return repository.save(sales);
 	}
 
 	@Override
@@ -27,9 +27,19 @@ public class SalesService implements SalesServiceInterface {
 	}
 
 	@Override
-	public Sales getSalesById(Long salesid) {
-		return repository.findById(salesid).get();
+	public List<Sales> getSalesByProductId(Long salesid) {
+		List<Sales> list= repository.findAll();
+		List<Sales> ans= new ArrayList<>();
+		for(Sales p:list) {
+        	if(p.getId().equals(salesid)) {
+        		ans.add(p);
+				break;
+        	}
+        }
+        return ans;
+
 	}
+
 
 	@Override
 	public void deleteSalesById(Long salesid) {

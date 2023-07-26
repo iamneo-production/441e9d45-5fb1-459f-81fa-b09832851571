@@ -7,15 +7,14 @@ export default function AddSales() {
   let navigate = useNavigate();
 
   const [user, setUser] = useState({
-    productid: "",
-    productname: "",
+    productId: "",
     quantity: "",
     price: "",
     timestamp: new Date().toISOString(),
     
   });
 
-  const { productid, productname, quantity, price, timestamp } = user;
+  const { productId, quantity, price, timestamp } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -24,6 +23,7 @@ export default function AddSales() {
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios.post("https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/post", user);
+    
     navigate("/sales");
   };
 
@@ -44,24 +44,12 @@ export default function AddSales() {
                 type={"text"}
                 className="form-control"
                 placeholder="Enter your productid"
-                name="productid"
-                value={productid}
+                name="productId"
+                value={productId}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="Productname" className="form-label">
-                Product Name
-              </label>
-              <input
-                type={"text"}
-                className="form-control"
-                placeholder="Enter product name"
-                name="productname"
-                value={productname}
-                onChange={(e) => onInputChange(e)}
-              />
-            </div>
+            
             <div className="mb-3">
               <label htmlFor="Quantity" className="form-label">
                 Quantity

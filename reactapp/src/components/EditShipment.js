@@ -8,13 +8,13 @@ export default function EditShipment() {
   const { id } = useParams();
 
   const [user, setUser] = useState({
-    productid: "",
+    productId: "",
     quantity: "",
     location: "",
     timestamp: new Date().toISOString(),
   });
 
-  const { productid, quantity, location, timestamp } = user;
+  const { productId, quantity, location, timestamp } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -26,7 +26,7 @@ export default function EditShipment() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/api/update`, user);
+    await axios.put(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/update`, user);
     navigate("/shipment");
   };
 
@@ -50,8 +50,8 @@ export default function EditShipment() {
                 type={"text"}
                 className="form-control"
                 placeholder="Enter your productid"
-                name="productid"
-                value={productid}
+                name="productId"
+                value={productId}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
