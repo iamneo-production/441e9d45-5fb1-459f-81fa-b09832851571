@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import NavbarComp from "./NavbarComp";
-import { FaEdit, FaTrash } from 'react-icons/fa';
-import { GrFormView } from "react-icons/gr";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
@@ -28,7 +26,7 @@ export default function ShipmentHome() {
         sortedOrders.sort((a, b) => a.id - b.id);
         break;
       case 'productId':
-        sortedOrders.sort((a, b) => a.productid - b.productid);
+        sortedOrders.sort((a, b) => a.productId - b.productId);
         break;
       case 'quantity':
         sortedOrders.sort((a, b) => a.quantity - b.quantity);
@@ -46,7 +44,7 @@ export default function ShipmentHome() {
   };
 
   const fetchShipments = async () => {
-    const result = await axios.get("https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/getall");
+    const result = await axios.get("https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment");
     setUsers(result.data);
   };
 
@@ -74,7 +72,7 @@ export default function ShipmentHome() {
                 </button>
                 <ul className='dropdown-menu' aria-labelledby='sortByButton'>
                   <li><button className='dropdown-item' onClick={() => handleSortBy('id')}>ID</button></li>
-                  <li><button className='dropdown-item' onClick={() => handleSortBy('productid')}>Product ID</button></li>
+                  <li><button className='dropdown-item' onClick={() => handleSortBy('productId')}>Product ID</button></li>
                   <li><button className='dropdown-item' onClick={() => handleSortBy('quantity')}>Quantity</button></li>
                   <li><button className='dropdown-item' onClick={() => handleSortBy('location')}>Location</button></li>
                   <li><button className='dropdown-item' onClick={() => handleSortBy('timestamp')}>Timestamp</button></li>
@@ -99,7 +97,7 @@ export default function ShipmentHome() {
           <tbody>
           {users.filter(
                   (order)=>order.id.toString().includes(query) ||
-                  order.productid.toString().includes(query) ||
+                  order.productId.toString().includes(query) ||
                   order.quantity.toString().includes(query) ||
                   order.location.toLowerCase().includes(query) ||
                   order.timestamp.toLowerCase().includes(query)
@@ -109,7 +107,7 @@ export default function ShipmentHome() {
                 <th scope="row" key={index}>
                   {index + 1}
                 </th>
-                <td>{user.productid}</td>
+                <td>{user.productId}</td>
                 <td>{user.quantity}</td>
                 <td>{user.location}</td>
                 <td>{user.timestamp}</td>
@@ -118,19 +116,19 @@ export default function ShipmentHome() {
                     className="btn btn-info"
                     to={`/viewshipment/${user.id}`}
                   >
-                    <GrFormView/>
+                    view
                   </Link>
                   <Link
                     className="btn btn-outline-primary mx-2"
                     to={`/editshipment/${user.id}`}
                   >
-                    <FaEdit/>
+                    edit
                   </Link>
                   <button
                     className="btn btn-danger"
                     onClick={() => deleteUser(user.id)}
                   >
-                    <FaTrash/>
+                    delete
                   </button>
                 </td>
               </tr>

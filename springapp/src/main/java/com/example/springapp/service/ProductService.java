@@ -46,12 +46,25 @@ public class ProductService {
     }
 
     public boolean deleteProduct(Long id) {
-        try {
-            productRepository.deleteProductById(id);
-            return true;
-        } catch (Exception ex) {
-            return false;
+        System.out.println(id);
+    	int ind = -1;
+        List<Product> list = productRepository.findAll();
+        for(int i=0; i<list.size(); i++) {
+        	Product p = list.get(i);
+        	if(p.getId().equals(id)) {
+        		ind = i;
+        		break;
+        	}
         }
+        if(ind == -1) {
+        	return false;
+        }
+        list.remove(ind);
+        productRepository.deleteAll();
+        for(Product p:list) {
+        	productRepository.save(p);
+        }
+        return true;
     }
     public Product getProductByBarcode(String barcode) {
         if (barcode == null || barcode.isEmpty()) {

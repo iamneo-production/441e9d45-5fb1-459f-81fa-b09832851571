@@ -7,14 +7,14 @@ export default function AddShipment() {
   let navigate = useNavigate();
 
   const [user, setUser] = useState({
-    productid: "",
+    productId: "",
     quantity: "",
     location: "",
     timestamp: new Date().toISOString(),
     
   });
 
-  const { productid, quantity, location, timestamp } = user;
+  const { productId, quantity, location, timestamp } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -44,8 +44,8 @@ export default function AddShipment() {
                 type={"text"}
                 className="form-control"
                 placeholder="Enter your productid"
-                name="productid"
-                value={productid}
+                name="productId"
+                value={productId}
                 onChange={(e) => onInputChange(e)}
               />
             </div>

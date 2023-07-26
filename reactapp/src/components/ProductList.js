@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavbarComp from './NavbarComp';
-import { FaEdit, FaTrash } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
@@ -82,6 +81,7 @@ const ProductList = () => {
 
   const handleDeleteProduct = async (productId) => {
     try {
+      console.log(productId);
       await axios.delete(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/product/${productId}`);
       fetchProducts();
     } catch (error) {
@@ -90,25 +90,20 @@ const ProductList = () => {
   };
 
   const handleEdit = (productId) => {
-    console.log("hello");
 
-    const order = products.find((value) => value.id === productId);
-    console.log("hello2");
+    const order = products.find((order) => order.id === productId);
     
     if (order) {
-      console.log("hello3");
     
       setEditProductID(productId);
       setPrice(order.price);
-      setBarcode("abc");
+      setBarcode(order.barcode);
       setLocation(order.location);
       setQuantity(order.quantity);
       setDescription(order.description);
       setName(order.name);
-      console.log("hello4");
-    
+      setShowForm(true);
     }
-    console.log('hello5');
   };
 
   const handleUpdateProduct = async (event) => {
@@ -225,14 +220,14 @@ const ProductList = () => {
                         onClick={() => handleEdit(product.id)} 
                         title='Edit'
                         >
-                        <FaEdit />
+                        edit
                         </button>
                         {' '}
                 <button 
                         onClick={() => handleDeleteProduct(product.id)}
                         title='Delete'
                         >
-                          <FaTrash />
+                          delete
                         </button>
               </td>
             </tr>
@@ -326,6 +321,7 @@ const ProductList = () => {
             onChange={(event) => setBarcode(event.target.value)}
             name='barcode'
             disabled={editProductID !== null}
+            title='Cannot modify barcode'
           />
           </div>
           <center>

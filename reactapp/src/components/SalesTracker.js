@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import NavbarComp from './NavbarComp';
-import { FaEdit, FaTrash } from 'react-icons/fa';
-import { GrFormView } from "react-icons/gr";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
@@ -28,16 +26,13 @@ const SalesTracker = () => {
         sortedOrders.sort((a, b) => a.id - b.id);
         break;
       case 'productid':
-        sortedOrders.sort((a, b) => a.productid - b.productid);
+        sortedOrders.sort((a, b) => a.productId - b.productId);
         break;
       case 'quantity':
         sortedOrders.sort((a, b) => a.quantity - b.quantity);
         break;
       case 'price':
         sortedOrders.sort((a, b) => a.price - b.price);
-        break;
-      case 'productname':
-        sortedOrders.sort((a, b) => a.productname.localeCompare(b.productname));
         break;
       case 'timestamp':
         sortedOrders.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
@@ -49,10 +44,12 @@ const SalesTracker = () => {
   };
 
   const loadSales = async () => {
-      const response = await axios.get('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/getall');
-      setSales(response.data);
-      calculateRevenue(response.data);
+    const response = await axios.get('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/getall');
+    const salesData = response.data;
+    setSales(salesData);
+    calculateRevenue(salesData);
   };
+  
 
   const deleteSales = async (id) => {
     await axios.delete(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/delete/${id}`);
@@ -86,7 +83,7 @@ const SalesTracker = () => {
                 <ul className='dropdown-menu' aria-labelledby='sortByButton'>
                   <li><button className='dropdown-item' onClick={() => handleSortBy('id')}>ID</button></li>
                   <li><button className='dropdown-item' onClick={() => handleSortBy('productid')}>Product ID</button></li>
-                  <li><button className='dropdown-item' onClick={() => handleSortBy('productname')}>Product Name</button></li>
+                  
                   <li><button className='dropdown-item' onClick={() => handleSortBy('quantity')}>Quantity</button></li>
                   <li><button className='dropdown-item' onClick={() => handleSortBy('price')}>Price</button></li>
                   <li><button className='dropdown-item' onClick={() => handleSortBy('timestamp')}>Timestamp</button></li>
@@ -103,53 +100,56 @@ const SalesTracker = () => {
            <tr>
             <th>ID</th>
             <th>Product ID</th>
-            <th>Product Name</th>
             <th>Quantity</th>
             <th>Price</th>
             <th>Timestamp</th>
             <th>Action</th>
            </tr>
          </thead>
-        <tbody>
-        {sales.filter(
-                  (order)=>order.id.toString().includes(query) ||
-                  order.productid.toString().includes(query) ||
-                  order.quantity.toString().includes(query) ||
-                  order.productname.toLowerCase().includes(query) ||
-                  order.timestamp.toLowerCase().includes(query)
-                  ).map((sale) => {
-                  return (
-            <tr key={sale.id}>
-              <td>{sale.id}</td>
-              <td>{sale.productid}</td>
-              <td>{sale.productname}</td>
-              <td>{sale.quantity}</td>
-              <td>{sale.price}</td>
-              <td>{sale.timestamp}</td>
-              <td>
-                  <Link
-                    className="btn btn-light"
-                    to={`/viewsales/${sale.id}`}
-                  >  
-                  <GrFormView/> 
-                  </Link>
-                  <Link
-                    className="btn btn-light"
-                    to={`/editsales/${sale.id}`}
-                    
-                  >
-                  <FaEdit/>  
-                  </Link>
-                  <button
-                    className="btn btn-light"
-                    onClick={() => deleteSales(sale.id)}
-                  >
-                  <FaTrash/>
-                  </button>
-                </td>
-            </tr>
-          )})}
-        </tbody>
+         <tbody>
+  {
+    sales
+      .filter(
+        (order) =>
+          order.id.toString().includes(query) ||
+          order.productId.toString().includes(query) ||
+          order.quantity.toString().includes(query) ||
+          order.timestamp.toLowerCase().includes(query)
+      )
+      .map((sale) => {
+        return (
+          <tr key={sale.id}>
+            <td>{sale.id}</td>
+            <td>{sale.productId}</td>
+            <td>{sale.quantity}</td>
+            <td>{sale.price}</td>
+            <td>{sale.timestamp}</td>
+            <td>
+              <Link
+                className="btn btn-light"
+                to={`/viewsales/${sale.id}`}
+              >
+               view
+              </Link>
+              <Link
+                className="btn btn-light"
+                to={`/editsales/${sale.id}`}
+              >
+               edit
+              </Link>
+              <button
+                className="btn btn-light"
+                onClick={() => deleteSales(sale.id)}
+              >
+               delete
+              </button>
+            </td>
+          </tr>
+        );
+      })
+ }
+</tbody>
+
       </table>
       <h3 className='text-white'>Revenue: ${revenue}</h3>
       

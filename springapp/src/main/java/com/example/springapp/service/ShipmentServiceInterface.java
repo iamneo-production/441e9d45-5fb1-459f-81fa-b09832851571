@@ -8,11 +8,10 @@ public interface ShipmentServiceInterface {
 
 	public Shipment addShipment(Shipment shipment);
 
-	public List<Shipment> getAllShipments();
+	public List<Shipment> getAllShipment();
 
 	public Shipment getShipById(Long shipidL);
 
 	public void deleteShipById(Long shipidL);
 
 }
-

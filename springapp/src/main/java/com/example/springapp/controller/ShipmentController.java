@@ -31,10 +31,10 @@ public class ShipmentController {
 		return new ResponseEntity<Shipment>(shipmentSaved, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/getall")
+	@GetMapping
 	public ResponseEntity<List<Shipment>> getAllShipments() {
 
-		List<Shipment> listOfAllShips = shipmentServiceInterface.getAllShipments();
+		List<Shipment> listOfAllShips = shipmentServiceInterface.getAllShipment();
 		return new ResponseEntity<List<Shipment>>(listOfAllShips, HttpStatus.OK);
 	}
 
@@ -59,4 +59,3 @@ public class ShipmentController {
 	}
 
 }
-

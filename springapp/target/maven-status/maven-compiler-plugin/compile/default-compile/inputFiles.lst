@@ -12,8 +12,6 @@
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/InventoryService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Product.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/PurchaseOrderRepository.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Inventory.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/ShipmentRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/InventoryController.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/PurchaseOrderService.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Sales.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/SalesServiceInterface.java

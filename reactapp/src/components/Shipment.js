@@ -5,25 +5,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
 
-function PurchaseOrder() {
-  const [purchaseOrders, setPurchaseOrders] = useState([]);
+function Shipment() {
+  const [shipmentOrders, setShipmentOrders] = useState([]);
   const [quantity, setQuantity] = useState('');
   const [productId, setProductId] = useState('');
-  const [supplier, setSupplier] = useState('');
+  const [location, setLocation] = useState('');
   const [timestamp, setTimestamp] = useState(new Date());
   const [showForm, setShowForm] = useState(false);
   const [editOrderId, setEditOrderId] = useState(null); 
   const [query,setQuery]=useState('');
 
   useEffect(() => {
-    fetchPurchaseOrders();
+    fetchShipmentOrders();
   }, []);
 
   const [sortBy, setSortBy] = useState('id'); 
 
   const handleSortBy = (option) => {
     setSortBy(option);
-    const sortedOrders = [...purchaseOrders]; 
+    const sortedOrders = [...shipmentOrders]; 
 
     switch (option) {
       case 'id':
@@ -35,8 +35,8 @@ function PurchaseOrder() {
       case 'quantity':
         sortedOrders.sort((a, b) => a.quantity - b.quantity);
         break;
-      case 'supplier':
-        sortedOrders.sort((a, b) => a.supplier.localeCompare(b.supplier));
+      case 'location':
+        sortedOrders.sort((a, b) => a.location.localeCompare(b.location));
         break;
       case 'timestamp':
         sortedOrders.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
@@ -44,74 +44,74 @@ function PurchaseOrder() {
       default:
         break;
     }
-    setPurchaseOrders(sortedOrders); 
+    setShipmentOrders(sortedOrders); 
   };
   
 
 
-  const fetchPurchaseOrders = async () => {
+  const fetchShipmentOrders = async () => {
     try {
-      const response = await axios.get('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/purchase-order');
-      setPurchaseOrders(response.data);
+      const response = await axios.get('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment');
+      setShipmentOrders(response.data);
     } catch (error) {
       console.error(error);
     }
   };
  
-  const handleAddPurchase = async (event) => {
+  const handleAddShipment = async (event) => {
     event.preventDefault();
 
-    const newPurchase = {
+    const newShipment = {
       productId,
       quantity,
-      supplier,
+      location,
       timestamp: timestamp.toISOString(),
     };
 
     try {
-      await axios.post('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/purchase-order', newPurchase);
-      fetchPurchaseOrders();
+      await axios.post('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/post', newShipment);
+      fetchShipmentOrders();
       resetForm();
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleEditProduct = (orderId) => {
-    const order = purchaseOrders.find((order) => order.id === orderId);
+  const handleEditShipment = (orderId) => {
+    const order = shipmentOrders.find((order) => order.id === orderId);
     if (order) {
       setEditOrderId(orderId);
       setProductId(order.productId);
       setQuantity(order.quantity);
-      setSupplier(order.supplier);
+      setLocation(order.location);
       setTimestamp(new Date(order.timestamp));
       setShowForm(true);
     }
   };
 
-  const handleUpdatePurchase = async (event) => {
+  const handleUpdateShipment = async (event) => {
     event.preventDefault();
 
-    const updatedPurchase = {
+    const updatedShipment = {
       productId,
       quantity,
-      supplier,
+      location,
       timestamp: timestamp.toISOString(),
     };
 
     try {
-      await axios.put(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/purchase-order/${editOrderId}`, updatedPurchase);
-      fetchPurchaseOrders();
+      await axios.put(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/update/${editOrderId}`, updatedShipment);
+      fetchShipmentOrders();
       resetForm();
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleDeleteProduct = async (orderId) => {
+  const handleDeleteShipment = async (orderId) => {
     try {
-      await axios.delete(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/purchase-order/${orderId}`);
-      fetchPurchaseOrders();
+      await axios.delete(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/delete/${orderId}`);
+      fetchShipmentOrders();
     } catch (error) {
       console.error(error);
     }
@@ -121,7 +121,7 @@ function PurchaseOrder() {
     setEditOrderId(null);
     setProductId('');
     setQuantity('');
-    setSupplier('');
+    setLocation('');
     setTimestamp(new Date());
     setShowForm(false);
   };
@@ -148,13 +148,13 @@ function PurchaseOrder() {
                   <li><button className='dropdown-item' onClick={() => handleSortBy('id')}>ID</button></li>
                   <li><button className='dropdown-item' onClick={() => handleSortBy('productId')}>Product ID</button></li>
                   <li><button className='dropdown-item' onClick={() => handleSortBy('quantity')}>Quantity</button></li>
-                  <li><button className='dropdown-item' onClick={() => handleSortBy('supplier')}>Supplier</button></li>
+                  <li><button className='dropdown-item' onClick={() => handleSortBy('location')}>Location</button></li>
                   <li><button className='dropdown-item' onClick={() => handleSortBy('timestamp')}>Timestamp</button></li>
                 </ul>
               </div>
                 
                 <button type='button' className='btn btn-primary' onClick={() => setShowForm(true)}>
-                  Add new purchase order
+                  Add new shipment
                 </button>
               </>
             ) : (
@@ -170,17 +170,17 @@ function PurchaseOrder() {
                   <th>ID</th>
                   <th>Product ID</th>
                   <th>Quantity</th>
-                  <th>Supplier</th>
+                  <th>Location</th>
                   <th>Timestamp</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {purchaseOrders.filter(
+                {shipmentOrders.filter(
                   (order)=>order.id.toString().includes(query) ||
                   order.productId.toString().includes(query) ||
                   order.quantity.toString().includes(query) ||
-                  order.supplier.toLowerCase().includes(query) ||
+                  order.location.toLowerCase().includes(query) ||
                   order.timestamp.toLowerCase().includes(query)
                   ).map((order) => {
                   return (
@@ -189,14 +189,14 @@ function PurchaseOrder() {
                     <td>{order.id}</td>
                     <td>{order.productId}</td>
                     <td>{order.quantity}</td>
-                    <td>{order.supplier}</td>
+                    <td>{order.location}</td>
                     <td>{order.timestamp}</td>
                     <td>
-                        <button onClick={() => handleEditProduct(order.id)} title='Edit'>
+                        <button onClick={() => handleEditShipment(order.id)} title='Edit'>
                           edit
                         </button>{' '}
-                        <button onClick={() => handleDeleteProduct(order.id)} title='Delete'>
-                         delete
+                        <button onClick={() => handleDeleteShipment(order.id)} title='Delete'>
+                          delete
                         </button>
                     </td>
                   </tr>
@@ -208,8 +208,8 @@ function PurchaseOrder() {
             <div className='container w-50 justify-content-center'>
               <div className='row'>
                 <div className='container justify-content-center bg-dark col-md-8 border rounded p-4 mt-2 text-white'>
-                  <h2 className='text-center m-4'>{editOrderId ? 'Edit Purchase Order' : 'Add Purchase Order'}</h2>
-                  <form onSubmit={editOrderId ? handleUpdatePurchase : handleAddPurchase}>
+                  <h2 className='text-center m-4'>{editOrderId ? 'Edit Shipment Order' : 'Add Shipment Order'}</h2>
+                  <form onSubmit={editOrderId ? handleUpdateShipment : handleAddShipment}>
                     <div className='mb-3'>
                       <label htmlFor='Name' className='form-label'>
                         Product ID
@@ -238,14 +238,14 @@ function PurchaseOrder() {
                     </div>
                     <div className='mb-3'>
                       <label htmlFor='Price' className='form-label'>
-                        Supplier
+                        Location
                       </label>
                       <input
                         type='text'
                         className='form-control'
-                        placeholder='Enter the supplier'
-                        value={supplier}
-                        onChange={(event) => setSupplier(event.target.value)}
+                        placeholder='Enter the location'
+                        value={location}
+                        onChange={(event) => setLocation(event.target.value)}
                         required
                         name='supplier'
                       />
@@ -265,7 +265,7 @@ function PurchaseOrder() {
                     </div>
                     <center>
                       <button type='submit' className='btn btn-primary'>
-                        {editOrderId ? 'Update Purchase Order' : 'Add Purchase Order'}
+                        {editOrderId ? 'Update Shipment Order' : 'Add Shipment Order'}
                       </button>
                     </center>
                   </form>
@@ -279,4 +279,4 @@ function PurchaseOrder() {
   );
 }
 
-export default PurchaseOrder;
+export default Shipment;

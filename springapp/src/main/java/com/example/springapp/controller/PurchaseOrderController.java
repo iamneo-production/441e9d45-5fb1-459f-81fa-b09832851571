@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,6 @@ import com.example.springapp.model.PurchaseOrder;
 import com.example.springapp.repository.ProductRepository;
 import com.example.springapp.repository.PurchaseOrderRepository;
 import com.example.springapp.service.PurchaseOrderService;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("/purchase-order")
@@ -48,8 +48,8 @@ public class PurchaseOrderController {
     }
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<PurchaseOrder> getPurchaseOrderByProductId(@PathVariable Long id) {
-        PurchaseOrder purchaseOrder = purchaseOrderService.getPurchaseOrderByProductId(id);
+	public ResponseEntity<List<PurchaseOrder>> getPurchaseOrderByProductId(@PathVariable Long id) {
+        List<PurchaseOrder> purchaseOrder = purchaseOrderService.getPurchaseOrderByProductId(id);
         if (purchaseOrder != null) {
             return new ResponseEntity<>(purchaseOrder, HttpStatus.OK);
         } else {

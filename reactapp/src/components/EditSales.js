@@ -9,14 +9,13 @@ export default function EditSales() {
   const { id } = useParams();
 
   const [user, setUser] = useState({
-    productid: "",
-    productname: "",
+    productId: "",
     quantity: "",
     price: "",
     timestamp: "",
   });
 
-  const { productid, productname, quantity, price, timestamp } = user;
+  const { productId, quantity, price, timestamp } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -33,8 +32,8 @@ export default function EditSales() {
   };
  
   const loadUser = async () => {
-    const result = await axios.get(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/get/${id}`);
-    setUser(result.data);
+    const result = await axios.get(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/${id}`);
+    setUser(result.data[0]);
   };
 
   return (
@@ -54,24 +53,12 @@ export default function EditSales() {
                 type={"text"}
                 className="form-control"
                 placeholder="Enter your productid"
-                name="productid"
-                value={productid}
+                name="productId"
+                value={productId}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="Productname" className="form-label">
-                Product name
-              </label>
-              <input
-                type={"text"}
-                className="form-control"
-                placeholder="Enter product name"
-                name="productname"
-                value={productname}
-                onChange={(e) => onInputChange(e)}
-              />
-            </div>
+            
             <div className="mb-3">
               <label htmlFor="Quantity" className="form-label">
                 Quantity

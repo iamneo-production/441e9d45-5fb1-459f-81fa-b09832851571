@@ -1,8 +1,6 @@
 import NavbarComp from './NavbarComp';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { BsFillBagFill } from 'react-icons/bs';
-import { MdRecentActors } from 'react-icons/md';
 
 
 
@@ -24,8 +22,8 @@ function Reports() {
     const sortedOrders = [...salesData]; 
 
     switch (option) {
-      case 'productname':
-        sortedOrders.sort((a, b) => a.productname.localeCompare(b.productname));
+      case 'productId':
+        sortedOrders.sort((a, b) => a.productId - b.productId);
         break;
       case 'price':
         sortedOrders.sort((a, b) => a.price - b.price);
@@ -71,7 +69,7 @@ function Reports() {
        //marginLeft:'60%',
        //marginTop:'45%'
       }}>
-    <h1> <MdRecentActors /> Recent Sales Orders:</h1>
+    <h1>  Recent Sales Orders:</h1>
     </div>
     <div className='mb-3 d-flex justify-content-end'>
             <input
@@ -85,7 +83,7 @@ function Reports() {
                   Sort By
                 </button>
                 <ul className='dropdown-menu' aria-labelledby='sortByButton'>
-                  <li><button className='dropdown-item' onClick={() => handleSortBy('productname')}>Product Name</button></li>
+                  <li><button className='dropdown-item' onClick={() => handleSortBy('productId')}>Product ID</button></li>
                   <li><button className='dropdown-item' onClick={() => handleSortBy('quantity')}>Quantity</button></li>
                   <li><button className='dropdown-item' onClick={() => handleSortBy('price')}>Price</button></li>
                 </ul>
@@ -100,20 +98,20 @@ function Reports() {
         }} className='table border shadow'>
       <thead>
         <tr>
-          <th>Product Name</th>
+          <th>Product ID</th>
           <th>Quantity</th>
           <th>Price</th>
         </tr>
       </thead>
       <tbody>
         {salesData.filter(
-                  (order)=>order.productname.toLowerCase().includes(query) ||
+                  (order)=>order.productId.toString().includes(query) ||
                   order.quantity.toString().includes(query) ||
                   order.price.toString().includes(query) 
                   ).map((sale, index) => {
           return(index>(value-4) &&( 
             <tr>
-            <td>{sale.productname}</td>
+            <td>{sale.productId}</td>
             <td>{sale.quantity}</td>
             <td>{sale.price}</td>
             </tr>
@@ -122,7 +120,7 @@ function Reports() {
       </tbody>
     </table>
     <h1>
-    <BsFillBagFill /> 
+    
       Inventory Level: {quantity}</h1>
     </div>
     </div>
