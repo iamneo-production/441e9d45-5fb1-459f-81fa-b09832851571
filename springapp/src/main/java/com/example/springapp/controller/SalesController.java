@@ -10,7 +10,7 @@ import com.example.springapp.model.Sales;
 import com.example.springapp.service.SalesServiceInterface;
 
 @RestController
-@CrossOrigin("https://8081-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io")
+@CrossOrigin
 @RequestMapping("/sales")
 public class SalesController {
 

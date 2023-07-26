@@ -75,4 +75,9 @@ public class InventoryController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping("/total-quantity")
+    public ResponseEntity<Long> getTotalQuantity() {
+        Long totalQuantity = inventoryService.getTotalQuantity();
+        return new ResponseEntity<>(totalQuantity, HttpStatus.OK);
+    }
 }

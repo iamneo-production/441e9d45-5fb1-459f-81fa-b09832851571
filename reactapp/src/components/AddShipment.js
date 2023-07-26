@@ -22,7 +22,7 @@ export default function AddShipment() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8081/api/post", user);
+    await axios.post("https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/post", user);
     navigate("/shipment");
   };
 
