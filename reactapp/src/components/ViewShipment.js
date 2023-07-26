@@ -17,7 +17,7 @@ export default function ViewShipment() {
   }, []);
 
   const loadUser = async () => {
-    const result = await axios.get(`http://localhost:8081/api/get/${id}`);
+    const result = await axios.get(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/get/${id}`);
     setUser(result.data);
   };
 

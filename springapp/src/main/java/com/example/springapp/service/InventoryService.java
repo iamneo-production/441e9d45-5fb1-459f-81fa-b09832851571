@@ -73,4 +73,7 @@ public class InventoryService {
         }
         return true;
     }
+    public Long getTotalQuantity() {
+        return inventoryRepository.getTotalQuantity();
+    }
 }
