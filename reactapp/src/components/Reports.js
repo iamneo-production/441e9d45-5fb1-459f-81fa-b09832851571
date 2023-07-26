@@ -1,8 +1,6 @@
 import NavbarComp from './NavbarComp';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { BsFillBagFill } from 'react-icons/bs';
-import { MdRecentActors } from 'react-icons/md';
 
 
 
@@ -71,7 +69,7 @@ function Reports() {
        //marginLeft:'60%',
        //marginTop:'45%'
       }}>
-    <h1> <MdRecentActors /> Recent Sales Orders:</h1>
+    <h1>  Recent Sales Orders:</h1>
     </div>
     <div className='mb-3 d-flex justify-content-end'>
             <input
@@ -122,7 +120,7 @@ function Reports() {
       </tbody>
     </table>
     <h1>
-    <BsFillBagFill /> 
+    
       Inventory Level: {quantity}</h1>
     </div>
     </div>
