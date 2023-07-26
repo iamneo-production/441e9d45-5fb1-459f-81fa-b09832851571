@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 
 export default function ViewShipment() {
   const [user, setUser] = useState({
-    productid: "",
+    productId: "",
     quantity: "",
     location: "",
     timestamp: "",
@@ -17,7 +17,7 @@ export default function ViewShipment() {
   }, []);
 
   const loadUser = async () => {
-    const result = await axios.get(`https://8080-aabbafaeecebdfaddeebcaddaceaeaadbdbabf.project.examly.io/api/get/${id}`);
+    const result = await axios.get(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/get/${id}`);
     setUser(result.data);
   };
 
@@ -33,7 +33,7 @@ export default function ViewShipment() {
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
                   <b>Product_ID: </b>
-                  {user.productid}
+                  {user.productId}
                 </li>
                 <li className="list-group-item">
                   <b>Quantity: </b>
