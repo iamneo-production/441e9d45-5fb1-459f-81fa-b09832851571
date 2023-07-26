@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NavbarComp from './NavbarComp';
-import { FaEdit, FaTrash } from 'react-icons/fa';
-import { GrFormView } from "react-icons/gr";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
@@ -229,8 +227,8 @@ const LocationManager = () => {
                         </div>
                       ) : (
                         <div>
-                          <button className='btn btn-info' onClick={() => handleEdit(location.id)}><FaEdit/></button>
-                          <button className='btn btn-danger' onClick={() => handleDelete(location.id)}><FaTrash/></button>
+                          <button className='btn btn-info' onClick={() => handleEdit(location.id)}>edit</button>
+                          <button className='btn btn-danger' onClick={() => handleDelete(location.id)}>delete</button>
                         </div>
                       )}
                     </td>
