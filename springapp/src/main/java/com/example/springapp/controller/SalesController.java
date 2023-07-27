@@ -10,7 +10,7 @@ import com.example.springapp.model.Sales;
 import com.example.springapp.service.SalesServiceInterface;
 
 @RestController
-@CrossOrigin("https://8081-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io")
+@CrossOrigin
 @RequestMapping("/sales")
 public class SalesController {
 
@@ -30,11 +30,17 @@ public class SalesController {
 		return new ResponseEntity<>(listOfAllSales, HttpStatus.OK);
 	}
 
-	@GetMapping("/get/{salesid}")
-	public ResponseEntity<Sales> getSalesById(@PathVariable("salesid") Long salesid) {
+	@GetMapping("/{salesid}")
+	public ResponseEntity<List<Sales>> getSalesByProductId(@PathVariable("salesid") Long salesid) {
 
-		Sales salesRetrieved = salesServiceInterface.getSalesById(salesid);
-		return new ResponseEntity<>(salesRetrieved, HttpStatus.OK);
+		List<Sales> salesRetrieved = salesServiceInterface.getSalesByProductId(salesid);
+		if (salesRetrieved.size() != 0) {
+            return new ResponseEntity<>(salesRetrieved, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+		
 	}
 
 	@DeleteMapping("/delete/{salesid}")

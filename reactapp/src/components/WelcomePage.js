@@ -5,7 +5,7 @@ function WelcomePage() {
   return (
     <>
     <NavbarComp />
-    <h1 style={styles.welcometext}>Welcome To IMS</h1>
+    <h1 style={styles.welcometext}>Welcome To Inventory Management System</h1>
 
     </>
   )

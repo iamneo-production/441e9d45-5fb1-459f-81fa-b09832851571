@@ -1,11 +1,11 @@
 package com.example.springapp.service;
 
-import java.util.ArrayList;
 import java.util.*;
 
 import org.springframework.stereotype.Service;
 
 import com.example.springapp.model.Inventory;
+import com.example.springapp.model.Product;
 import com.example.springapp.model.PurchaseOrder;
 import com.example.springapp.repository.PurchaseOrderRepository;
 
@@ -28,7 +28,18 @@ public class PurchaseOrderService {
 	
 	
 	
-	public PurchaseOrder getPurchaseOrderByProductId(Long id) {
+	public List<PurchaseOrder> getPurchaseOrderByProductId(Long id) {
+    	List<PurchaseOrder> list = purchaseOrderRepository.findAll();
+    	List<PurchaseOrder> ans = new ArrayList<>();
+        for(PurchaseOrder p:list) {
+        	if(p.getId().equals(id)) {
+        		ans.add(p);
+        	}
+        }
+        return ans;
+    }
+	
+	public PurchaseOrder getPurchasesOrderByProductId(Long id) {
     	List<PurchaseOrder> list = purchaseOrderRepository.findAll();
         for(PurchaseOrder p:list) {
         	if(p.getId().equals(id)) {
@@ -39,7 +50,7 @@ public class PurchaseOrderService {
     }
 	
 	public PurchaseOrder updatePurchaseOrder(Long id, PurchaseOrder updatedPurchaseOrder) {
-        PurchaseOrder existingPurchaseOrder = getPurchaseOrderByProductId(id);
+        PurchaseOrder existingPurchaseOrder = getPurchasesOrderByProductId(id);
         if (existingPurchaseOrder != null) {
         	existingPurchaseOrder.setQuantity(updatedPurchaseOrder.getQuantity());
         	existingPurchaseOrder.setSupplier(updatedPurchaseOrder.getSupplier());

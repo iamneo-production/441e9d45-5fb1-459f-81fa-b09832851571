@@ -7,3 +7,4 @@ import com.example.springapp.model.Shipment;
 public interface ShipmentRepository extends JpaRepository<Shipment, Long> {
 
 }
+
