@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import NavbarComp from "./NavbarComp";
+import {FaEdit, FaTrash} from "react-icons/fa";
+import {GrFormView} from "react-icons/gr";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
@@ -116,19 +118,19 @@ export default function ShipmentHome() {
                     className="btn btn-info"
                     to={`/viewshipment/${user.id}`}
                   >
-                    view
+                    <GrFormView/>
                   </Link>
                   <Link
                     className="btn btn-outline-primary mx-2"
                     to={`/editshipment/${user.id}`}
                   >
-                    edit
+                    <FaEdit/>
                   </Link>
                   <button
                     className="btn btn-danger"
                     onClick={() => deleteUser(user.id)}
                   >
-                    delete
+                    <FaTrash/>
                   </button>
                 </td>
               </tr>

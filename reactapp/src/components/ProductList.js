@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavbarComp from './NavbarComp';
+import { ToastContainer,toast } from 'react-toastify';
+import {FaEdit, FaTrash} from "react-icons/fa";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
@@ -220,14 +222,14 @@ const ProductList = () => {
                         onClick={() => handleEdit(product.id)} 
                         title='Edit'
                         >
-                        edit
+                        <FaEdit/>
                         </button>
                         {' '}
                 <button 
                         onClick={() => handleDeleteProduct(product.id)}
                         title='Delete'
                         >
-                          delete
+                          <FaTrash/>
                         </button>
               </td>
             </tr>

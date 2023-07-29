@@ -16,9 +16,11 @@ com/example/springapp/controller/SalesController.class
 com/example/springapp/service/InventoryService.class
 com/example/springapp/repository/LocationRepository.class
 com/example/springapp/controller/UserController.class
-com/example/springapp/payloads/LoginDto.class
-com/example/springapp/service/SalesService.class
 com/example/springapp/model/Inventory.class
+com/example/springapp/service/SalesService.class
+com/example/springapp/payloads/LoginDto.class
+com/example/springapp/model/Shipment.class
+com/example/springapp/controller/ProductController.class
 com/example/springapp/repository/PurchaseOrderRepository.class
 com/example/springapp/controller/ProductController.class
 com/example/springapp/model/Shipment.class

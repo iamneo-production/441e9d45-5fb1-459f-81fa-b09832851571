@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavbarComp from './NavbarComp';
 import { ToastContainer,toast } from 'react-toastify';
+import {FaEdit, FaTrash} from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
@@ -207,13 +208,13 @@ const InventoryDashboard = () => {
                         onClick={() => handleEdit(inventory.id)} 
                         title='Edit'
                         >
-                          edit
+                          <FaEdit/>
                         </button>
                         {' '}
                         <button 
                         onClick={() => handleDelete(inventory.id)} 
                         title='Delete'>
-                          delete
+                          <FaTrash/>
                         </button>
                       </>
                     </td>
