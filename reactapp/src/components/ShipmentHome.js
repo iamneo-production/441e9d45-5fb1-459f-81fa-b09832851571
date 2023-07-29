@@ -49,7 +49,7 @@ export default function ShipmentHome() {
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/delete/${id}`);
+    await axios.delete(`https://8080-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/delete/${id}`);
     fetchShipments();
   };
 

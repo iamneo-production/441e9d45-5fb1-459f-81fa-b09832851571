@@ -57,7 +57,7 @@ const Login = () => {
     if (validateForm()) {
       // Send a request to the backend for login
       axios
-        .post("https://8080-acafbdefbcdaffaddeebcaddaceaeaadbdbabf.project.examly.io/users/login", loginDetail)
+        .post("https://8080-bdffaeaffaddeebcaddaceaeaadbdbabf.project.examly.io/users/login", loginDetail)
         .then((response) => {
           // Handle the login success here (e.g., store the token in local storage)
           alert("Login successful");
