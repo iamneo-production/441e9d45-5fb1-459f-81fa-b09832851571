@@ -3,8 +3,8 @@ com/example/springapp/controller/PurchaseOrderController.class
 com/example/springapp/exceptions/GlobalExceptionHandler.class
 com/example/springapp/service/UserService.class
 com/example/springapp/model/Product.class
-com/example/springapp/service/SalesServiceInterface.class
 com/example/springapp/repository/UserRepo.class
+com/example/springapp/service/SalesServiceInterface.class
 com/example/springapp/model/Sales.class
 com/example/springapp/model/User.class
 com/example/springapp/service/LocationService.class
