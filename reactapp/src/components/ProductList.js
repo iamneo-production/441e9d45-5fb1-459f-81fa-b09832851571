@@ -52,7 +52,7 @@ const ProductList = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/product');
+      const response = await axios.get('https://8080-ddeeadacfaddeebcaddaceaeaadbdbabf.project.examly.io/product');
       setProducts(response.data);
     } catch (error) {
       console.error(error);
@@ -72,7 +72,7 @@ const ProductList = () => {
     };
 
     try {
-      await axios.post('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/product', newProduct);
+      await axios.post('https://8080-ddeeadacfaddeebcaddaceaeaadbdbabf.project.examly.io/product', newProduct);
       fetchProducts();
       resetForm();
     } catch (error) {
@@ -83,7 +83,7 @@ const ProductList = () => {
   const handleDeleteProduct = async (productId) => {
     try {
       console.log(productId);
-      await axios.delete(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/product/${productId}`);
+      await axios.delete(`https://8080-ddeeadacfaddeebcaddaceaeaadbdbabf.project.examly.io/product/${productId}`);
       fetchProducts();
     } catch (error) {
       console.error(error);
@@ -121,7 +121,7 @@ const ProductList = () => {
     };
 
     try {
-      await axios.put(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/product/${editProductID}`, updatedProduct);
+      await axios.put(`https://8080-ddeeadacfaddeebcaddaceaeaadbdbabf.project.examly.io/product/${editProductID}`, updatedProduct);
       fetchProducts();
       resetForm();
     } catch (error) {
