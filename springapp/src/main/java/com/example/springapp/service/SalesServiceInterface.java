@@ -15,4 +15,3 @@ public interface SalesServiceInterface {
 	public void deleteSalesById(Long salesid);
 
 }
-

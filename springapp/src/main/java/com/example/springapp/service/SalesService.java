@@ -18,8 +18,7 @@ public class SalesService implements SalesServiceInterface {
 
 	@Override
 	public Sales addSales(Sales sales) {
-		return repository.save(sales);
-
+    	return repository.save(sales);
 	}
 
 	@Override
@@ -34,11 +33,13 @@ public class SalesService implements SalesServiceInterface {
 		for(Sales p:list) {
         	if(p.getId().equals(salesid)) {
         		ans.add(p);
+				break;
         	}
         }
         return ans;
 
 	}
+
 
 	@Override
 	public void deleteSalesById(Long salesid) {

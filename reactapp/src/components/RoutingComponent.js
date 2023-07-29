@@ -21,6 +21,7 @@ import Signup from './Signup';
 import Login from './Login';
 import Login_And_Signup_Page from './Login_And_Signup_Page';
 import WelcomePage from './WelcomePage';
+import Shipment from './Shipment';
 
 function RoutingComponent() {
   return (

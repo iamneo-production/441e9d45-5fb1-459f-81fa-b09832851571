@@ -5,8 +5,7 @@ import NavbarComp from './NavbarComp';
 
 export default function ViewSales() {
   const [user, setUser] = useState({
-    productid: "",
-    productname: "",
+    productId: "",
     quantity: "",
     price: "",
     timestamp: "",
@@ -19,8 +18,8 @@ export default function ViewSales() {
   }, []);
 
   const loadUser = async () => {
-    const result = await axios.get(`https://8080-aedecebfbdffcfaddeebcaddacebceecbecadec.project.examly.io/sales/get/${id}`);
-    setUser(result.data);
+    const result = await axios.get(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/${id}`);
+    setUser(result.data[0]);
   };
 
   return (
@@ -37,11 +36,7 @@ export default function ViewSales() {
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
                   <b>Product_ID: </b>
-                  {user.productid}
-                </li>
-                <li className="list-group-item">
-                  <b>Product Name: </b>
-                  {user.productname}
+                  {user.productId}
                 </li>
                 <li className="list-group-item">
                   <b>Quantity: </b>

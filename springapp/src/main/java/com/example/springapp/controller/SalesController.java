@@ -34,7 +34,7 @@ public class SalesController {
 	public ResponseEntity<List<Sales>> getSalesByProductId(@PathVariable("salesid") Long salesid) {
 
 		List<Sales> salesRetrieved = salesServiceInterface.getSalesByProductId(salesid);
-		if (salesRetrieved != null) {
+		if (salesRetrieved.size() != 0) {
             return new ResponseEntity<>(salesRetrieved, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
