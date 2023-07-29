@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import NavbarComp from './NavbarComp';
-import { FaEdit, FaTrash } from 'react-icons/fa';
-import { GrFormView } from "react-icons/gr";
+import {FaEdit, FaTrash} from "react-icons/fa";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import { GrFormView } from 'react-icons/gr';
 
 
 const SalesTracker = () => {
@@ -131,19 +131,19 @@ const SalesTracker = () => {
                 className="btn btn-light"
                 to={`/viewsales/${sale.id}`}
               >
-                <GrFormView />
+               <GrFormView/>
               </Link>
               <Link
                 className="btn btn-light"
                 to={`/editsales/${sale.id}`}
               >
-                <FaEdit />
+               <FaEdit/>
               </Link>
               <button
                 className="btn btn-light"
                 onClick={() => deleteSales(sale.id)}
               >
-                <FaTrash />
+               <FaTrash/>
               </button>
             </td>
           </tr>
