@@ -1,17 +1,20 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css'; 
-import Home from './components/Home';
+import RoutingComponent from './components/RoutingComponent';
+import './style.css';
 const App = () => {
   return (
     
     
     <div>
-      <Home />
+      <RoutingComponent />
     </div>
     
   );
 };
+
+
 
 // const styles = {
 
