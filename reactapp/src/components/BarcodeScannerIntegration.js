@@ -12,7 +12,7 @@ const  BarcodeScannerIntegeration = () => {
       // Function to fetch data
       const fetchData = async (barcode) => {
         try {
-          const response = await axios.get(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/product/barcode/${barcode}`);
+          const response = await axios.get(`https://8080-decacabddcbafaddeebcaddaceaeaadbdbabf.project.examly.io/product/barcode/${barcode}`);
           setProductDetails(response.data);
         } catch (error) {
           console.error('Error:', error);

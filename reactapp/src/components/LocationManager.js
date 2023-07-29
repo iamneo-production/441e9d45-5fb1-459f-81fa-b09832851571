@@ -43,7 +43,7 @@ const LocationManager = () => {
 
   const fetchLocations = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/locations`);
+      const response = await axios.get(`https://8080-decacabddcbafaddeebcaddaceaeaadbdbabf.project.examly.io/locations`);
       setLocations(response.data);
     } catch (error) {
       console.log('Error:', error);
@@ -60,7 +60,7 @@ const LocationManager = () => {
     };
 
     try {
-      const response = await axios.post(`${API_BASE_URL}/locations`, locationData);
+      const response = await axios.post(`https://8080-decacabddcbafaddeebcaddaceaeaadbdbabf.project.examly.io/locations`, locationData);
 
       if (response.status === 201) {
         // Location created successfully, fetch the updated location list
@@ -81,7 +81,7 @@ const LocationManager = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`${API_BASE_URL}/locations/${id}`);
+      const response = await axios.delete(`https://8080-decacabddcbafaddeebcaddaceaeaadbdbabf.project.examly.io/locations/${id}`);
 
       if (response.status === 204) {
         // Location deleted successfully, fetch the updated location list
@@ -108,7 +108,7 @@ const LocationManager = () => {
     };
 
     try {
-      const response = await axios.put(`${API_BASE_URL}/locations/${id}`, locationData);
+      const response = await axios.put(`https://8080-decacabddcbafaddeebcaddaceaeaadbdbabf.project.examly.io/locations/${id}`, locationData);
 
       if (response.status === 200) {
         // Location updated successfully, fetch the updated location list

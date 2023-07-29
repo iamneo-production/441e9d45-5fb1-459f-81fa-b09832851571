@@ -51,7 +51,7 @@ function PurchaseOrder() {
 
   const fetchPurchaseOrders = async () => {
     try {
-      const response = await axios.get('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/purchase-order');
+      const response = await axios.get('https://8080-decacabddcbafaddeebcaddaceaeaadbdbabf.project.examly.io/purchase-order');
       setPurchaseOrders(response.data);
     } catch (error) {
       console.error(error);
@@ -69,7 +69,7 @@ function PurchaseOrder() {
     };
 
     try {
-      await axios.post('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/purchase-order', newPurchase);
+      await axios.post('https://8080-decacabddcbafaddeebcaddaceaeaadbdbabf.project.examly.io/purchase-order', newPurchase);
       fetchPurchaseOrders();
       resetForm();
     } catch (error) {
@@ -100,7 +100,7 @@ function PurchaseOrder() {
     };
 
     try {
-      await axios.put(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/purchase-order/${editOrderId}`, updatedPurchase);
+      await axios.put(`https://8080-decacabddcbafaddeebcaddaceaeaadbdbabf.project.examly.io/purchase-order/${editOrderId}`, updatedPurchase);
       fetchPurchaseOrders();
       resetForm();
     } catch (error) {
@@ -110,7 +110,7 @@ function PurchaseOrder() {
 
   const handleDeleteProduct = async (orderId) => {
     try {
-      await axios.delete(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/purchase-order/${orderId}`);
+      await axios.delete(`https://8080-decacabddcbafaddeebcaddaceaeaadbdbabf.project.examly.io/purchase-order/${orderId}`);
       fetchPurchaseOrders();
     } catch (error) {
       console.error(error);
