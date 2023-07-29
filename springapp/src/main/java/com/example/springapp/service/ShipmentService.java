@@ -23,7 +23,7 @@ public class ShipmentService implements ShipmentServiceInterface {
 	}
 
 	@Override
-	public List<Shipment> getAllShipments() {
+	public List<Shipment> getAllShipment() {
 		return crudRepo.findAll();
 	}
 
