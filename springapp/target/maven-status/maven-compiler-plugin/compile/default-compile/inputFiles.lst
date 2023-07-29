@@ -26,8 +26,8 @@
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/payloads/ApiResponse.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/PurchaseOrderController.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/SalesController.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/LocationRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/UserRepo.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/LocationRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/ProductRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/InventoryRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exceptions/ResourceNotFoundException.java
