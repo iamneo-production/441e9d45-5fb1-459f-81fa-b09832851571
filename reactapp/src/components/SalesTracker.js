@@ -102,6 +102,7 @@ const SalesTracker = () => {
            <tr>
             <th>ID</th>
             <th>Product ID</th>
+            <th>Product Name</th>
             <th>Quantity</th>
             <th>Price</th>
             <th>Timestamp</th>
