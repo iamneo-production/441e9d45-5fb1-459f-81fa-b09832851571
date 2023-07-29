@@ -27,12 +27,12 @@ export default function EditSales() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/update`, user);
+    await axios.put(`https://8080-fadddadbaeabecafaddeebcaddaceaeaadbdbabf.project.examly.io/sales/update`, user);
     navigate("/sales");
   };
  
   const loadUser = async () => {
-    const result = await axios.get(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/${id}`);
+    const result = await axios.get(`https://8080-fadddadbaeabecafaddeebcaddaceaeaadbdbabf.project.examly.io/sales/${id}`);
     setUser(result.data[0]);
   };
 

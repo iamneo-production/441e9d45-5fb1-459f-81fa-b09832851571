@@ -26,12 +26,12 @@ export default function EditShipment() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/update`, user);
+    await axios.put(`https://8080-fadddadbaeabecafaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/update`, user);
     navigate("/shipment");
   };
 
   const loadUser = async () => {
-    const result = await axios.get(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/get/${id}`);
+    const result = await axios.get(`https://8080-fadddadbaeabecafaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/get/${id}`);
     setUser(result.data);
   };
 

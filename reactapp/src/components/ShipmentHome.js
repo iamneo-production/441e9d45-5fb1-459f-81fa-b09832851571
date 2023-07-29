@@ -44,12 +44,12 @@ export default function ShipmentHome() {
   };
 
   const fetchShipments = async () => {
-    const result = await axios.get("https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment");
+    const result = await axios.get("https://8080-fadddadbaeabecafaddeebcaddaceaeaadbdbabf.project.examly.io/shipment");
     setUsers(result.data);
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/delete/${id}`);
+    await axios.delete(`https://8080-fadddadbaeabecafaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/delete/${id}`);
     fetchShipments();
   };
 
