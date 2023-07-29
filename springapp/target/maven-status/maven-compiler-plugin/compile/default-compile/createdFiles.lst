@@ -13,12 +13,11 @@ com/example/springapp/repository/SalesRepository.class
 com/example/springapp/service/impl/UserServiceImpl.class
 com/example/springapp/repository/ShipmentRepository.class
 com/example/springapp/controller/SalesController.class
-com/example/springapp/repository/ShipmentRepository.class
 com/example/springapp/service/InventoryService.class
 com/example/springapp/repository/LocationRepository.class
 com/example/springapp/controller/UserController.class
-com/example/springapp/service/SalesService.class
 com/example/springapp/payloads/LoginDto.class
+com/example/springapp/service/SalesService.class
 com/example/springapp/model/Inventory.class
 com/example/springapp/repository/PurchaseOrderRepository.class
 com/example/springapp/controller/ProductController.class
@@ -30,8 +29,8 @@ com/example/springapp/model/PurchaseOrder.class
 com/example/springapp/service/ProductService.class
 com/example/springapp/service/ShipmentServiceInterface.class
 com/example/springapp/repository/ProductRepository.class
-com/example/springapp/config/CorsConfig.class
 com/example/springapp/payloads/UserDto.class
+com/example/springapp/config/CorsConfig.class
 com/example/springapp/controller/LocationController.class
 com/example/springapp/controller/ShipmentController.class
 com/example/springapp/service/ShipmentService.class

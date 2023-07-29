@@ -6,7 +6,6 @@
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/LocationController.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/ProductService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/SalesRepository.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/config/UserDetailsServiceImpl.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/ShipmentController.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/PurchaseOrder.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/SalesService.java
@@ -16,18 +15,16 @@
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/PurchaseOrderRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Inventory.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/ShipmentRepository.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/config/SecurityConfig.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/InventoryController.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/ShipmentRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/SalesServiceInterface.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/User.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/payloads/UserDto.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/config/CorsConfig.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/payloads/ApiResponse.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/config/CorsConfig.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/PurchaseOrderController.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/controller/SalesController.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/UserRepo.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/LocationRepository.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/UserRepo.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/ProductRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/repository/InventoryRepository.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exceptions/ResourceNotFoundException.java
@@ -36,6 +33,6 @@
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Shipment.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/PurchaseOrderService.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/model/Sales.java
-/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/impl/UserServiceImpl.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/payloads/LoginDto.java
+/home/coder/project/workspace/springapp/src/main/java/com/example/springapp/service/impl/UserServiceImpl.java
 /home/coder/project/workspace/springapp/src/main/java/com/example/springapp/exceptions/GlobalExceptionHandler.java

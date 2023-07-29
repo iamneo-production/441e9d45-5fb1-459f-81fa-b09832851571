@@ -51,7 +51,7 @@ function Shipment() {
 
   const fetchShipmentOrders = async () => {
     try {
-      const response = await axios.get('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment');
+      const response = await axios.get('https://8080-acafbdefbcdaffaddeebcaddacebceecbecadec.project.examly.io/shipment');
       setShipmentOrders(response.data);
     } catch (error) {
       console.error(error);
@@ -69,7 +69,7 @@ function Shipment() {
     };
 
     try {
-      await axios.post('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/post', newShipment);
+      await axios.post('https://8080-acafbdefbcdaffaddeebcaddacebceecbecadec.project.examly.io/shipment/post', newShipment);
       fetchShipmentOrders();
       resetForm();
     } catch (error) {
@@ -100,7 +100,7 @@ function Shipment() {
     };
 
     try {
-      await axios.put(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/update/${editOrderId}`, updatedShipment);
+      await axios.put(`https://8080-acafbdefbcdaffaddeebcaddacebceecbecadec.project.examly.io/shipment/update/${editOrderId}`, updatedShipment);
       fetchShipmentOrders();
       resetForm();
     } catch (error) {
@@ -110,7 +110,7 @@ function Shipment() {
 
   const handleDeleteShipment = async (orderId) => {
     try {
-      await axios.delete(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/shipment/delete/${orderId}`);
+      await axios.delete(`https://8080-acafbdefbcdaffaddeebcaddacebceecbecadec.project.examly.io/shipment/delete/${orderId}`);
       fetchShipmentOrders();
     } catch (error) {
       console.error(error);
