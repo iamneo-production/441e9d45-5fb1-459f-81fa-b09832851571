@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavbarComp from './NavbarComp';
-import { FaEdit, FaTrash } from 'react-icons/fa';
+import {FaEdit, FaTrash} from "react-icons/fa";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
@@ -197,7 +197,7 @@ function PurchaseOrder() {
                           <FaEdit/>
                         </button>{' '}
                         <button onClick={() => handleDeleteProduct(order.id)} title='Delete'>
-                          <FaTrash/>
+                         <FaTrash/>
                         </button>
                     </td>
                   </tr>
