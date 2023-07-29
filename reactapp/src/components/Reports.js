@@ -40,7 +40,7 @@ function Reports() {
 
     const fetchInventoryQuantity = async () => {
         try {
-          const response = await axios.get('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/inventory/total-quantity');
+          const response = await axios.get('https://8080-ebffcebdfaddeebcaddaceaeaadbdbabf.project.examly.io/inventory/total-quantity');
           console.log(quantity);
           setQuantity(response.data);
         } catch (error) {
@@ -49,7 +49,7 @@ function Reports() {
       };
       const fetchSalesData = async () => {
         try {
-          const response = await axios.get('https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/getall');
+          const response = await axios.get('https://8080-ebffcebdfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/getall');
           setSalesData(response.data);
           console.log(response.data);
         } catch (error) {

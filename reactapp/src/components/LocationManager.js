@@ -18,7 +18,7 @@ const LocationManager = () => {
     fetchLocations();
   }, []);
 
-  const API_BASE_URL = 'https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/';
+  const API_BASE_URL = 'https://8080-ebffcebdfaddeebcaddaceaeaadbdbabf.project.examly.io/';
 
   const [sortBy, setSortBy] = useState('id'); 
 
