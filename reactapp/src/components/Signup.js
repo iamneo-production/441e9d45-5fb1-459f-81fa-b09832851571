@@ -98,7 +98,7 @@ const Signup = () => {
     if (validateForm()) {
       // Send a request to the backend for registration
       axios
-        .post("https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/users/signup", data)
+        .post("https://8080-aabbafaeecebdfaddeebcaddacebceecbecadec.project.examly.io/users/signup", data)
         .then((response) => {
           console.log(response.data);
           setData({

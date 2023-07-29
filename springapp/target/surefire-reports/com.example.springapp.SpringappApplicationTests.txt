@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.example.springapp.SpringappApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.762 s - in com.example.springapp.SpringappApplicationTests
+Tests run: 10, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 12.028 s <<< FAILURE! - in com.example.springapp.SpringappApplicationTests
+testCreateInventory  Time elapsed: 0.036 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<201> but was:<500>
+	at com.example.springapp.SpringappApplicationTests.testCreateInventory(SpringappApplicationTests.java:127)
+
