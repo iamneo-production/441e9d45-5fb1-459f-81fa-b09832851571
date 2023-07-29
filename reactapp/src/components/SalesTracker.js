@@ -54,7 +54,7 @@ const SalesTracker = () => {
   
 
   const deleteSales = async (id) => {
-    await axios.delete(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/delete/${id}`);
+    await axios.delete(`https://8080-aedecebfbdffcfaddeebcaddacebceecbecadec.project.examly.io/sales/delete/${id}`);
     loadSales();
   };
   const calculateRevenue = (salesData) => {

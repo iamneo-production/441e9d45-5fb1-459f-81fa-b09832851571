@@ -27,7 +27,7 @@ export default function EditSales() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`https://8080-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io/sales/update`, user);
+    await axios.put(`https://8080-aedecebfbdffcfaddeebcaddacebceecbecadec.project.examly.io/sales/update`, user);
     navigate("/sales");
   };
  
