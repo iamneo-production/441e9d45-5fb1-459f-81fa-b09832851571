@@ -73,7 +73,7 @@ const ProductList = () => {
     };
 
     try {
-      await axios.post('https://8080-decacabddcbafaddeebcaddaceaeaadbdbabf.project.examly.io/product', newProduct);
+      await axios.post('https://8080-decacabddcbafaddeebcaddaceaeaadbdbabf.project.examly.io//product', newProduct);
       fetchProducts();
       resetForm();
     } catch (error) {
