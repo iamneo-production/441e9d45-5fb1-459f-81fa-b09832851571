@@ -14,7 +14,7 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("https://8081-fadddadbaeabecafaddeebcaddaceaeaadbdbabf.project.examly.io"); // Frontend url
+        config.addAllowedOrigin("https://8081-ccafeabbdfaddeebcaddaceaeaadbdbabf.project.examly.io"); // Frontend url
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
